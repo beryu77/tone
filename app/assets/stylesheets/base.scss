@@ -1,0 +1,33 @@
+
+/* body */
+body {
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+/* header */
+.navbar {
+  border-radius: 0px;
+  background-color: black;
+}
+.navbar-logo {
+  width: 150px;
+}
+.navbar-brand::before {
+  content: "\00a0";
+}
+
+.nav-link {
+  color: white;
+}
+
+.background {
+  height: 1000px;
+}
+
+.home-foto {
+  text-align: center;
+  padding-top: 50px;
+}
