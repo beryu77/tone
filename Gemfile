@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ----- 以下追記　-----
 gem 'bootstrap', '>= 4.3.1'
+gem 'bcrypt', '>= 3.1.12'
