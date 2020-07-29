@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[edit update destroy]
   before_action :correct_user, only: %i[edit update]
-  before_adtion :admin_user, only: %i[index destroy]
+  before_action :admin_user, only: %i[index destroy]
 
   def index
     @users = User.page(params[:page]) 
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   def new
