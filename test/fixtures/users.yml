@@ -4,9 +4,11 @@
 #
 #  id              :integer          not null, primary key
 #  admin           :boolean          default(FALSE)
+#  avatar          :string
 #  email           :string
 #  name            :string
 #  password_digest :string
+#  profile         :text
 #  remember_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

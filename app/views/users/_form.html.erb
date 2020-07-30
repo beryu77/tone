@@ -1,17 +1,21 @@
 <%= form_with model: user, local: true do |f| %>
   <%= render 'shared/error_messages' %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.label :name, 'ユーザー名（10文字以内）' %>
+  <%= f.text_field :name, class: 'form-control', autocomplete: 'name', required: 'required' %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+  <%= f.label :email, 'メールアドレス' %>
+  <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: 'required' %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
+  <%= f.label :password, 'パスワード（6文字以上）' %>
+  <%= f.password_field :password, class: 'form-control', autocomplete: 'password', required: 'required' %>
 
-  <%= f.label :password_confirmation, "Confirmation" %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  <%= f.label :password_confirmation, "確認用パスワード" %>
+  <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'password', required: 'required' %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
+
+<% if !logged_in? %>
+  <%= link_to "ログイン", login_path %>
 <% end %>

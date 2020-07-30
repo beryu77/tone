@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(user_update_params)
       flash[:success] = "プロフィールの編集が完了しました"
       redirect_to @user
     else
@@ -52,6 +52,10 @@ class UsersController < ApplicationController
     # ストロングパラメータ
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :profile)
     end
 
     # ログイン済ユーザーかどうか確認
