@@ -4,9 +4,11 @@
 #
 #  id              :integer          not null, primary key
 #  admin           :boolean          default(FALSE)
+#  avatar          :string
 #  email           :string
 #  name            :string
 #  password_digest :string
+#  profile         :text
 #  remember_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -21,7 +23,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token # 仮想の属性（トークンをデータベースに保存せずに実装するため）
 
   before_save { self.email = email.downcase }
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
