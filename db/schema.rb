@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_052210) do
+ActiveRecord::Schema.define(version: 2020_07_30_032056) do
 
   create_table "posts", force: :cascade do |t|
     t.text "caption"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2020_07_29_052210) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.string "avatar"
+    t.text "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
