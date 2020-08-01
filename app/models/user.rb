@@ -18,7 +18,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
-  has_many :microposts, dependent: :destroy   # ユーザーが削除された時に投稿も削除する
+  has_many :posts, dependent: :destroy   # ユーザーが削除された時に投稿も削除する
 
   attr_accessor :remember_token # 仮想の属性（トークンをデータベースに保存せずに実装するため）
 

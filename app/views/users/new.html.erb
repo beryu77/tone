@@ -1,11 +1,28 @@
-<% provide(:title, 'ユーザー登録') %>
-<% provide(:button_text, '登録する') %>
+<% provide(:title, "ユーザー登録") %>
+
+<%= render "shared/error_messages" %>
 
 <div class="body">
-  <h1>新規ユーザー登録</h1>
+  <h2>新規ユーザー登録</h2>
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= render partial: "form", locals: { user: @user } %>
+    <div class="col-md-6 offset-3">
+    
+      <%= form_with model: @user, local: true do |f| %>
+        <%= f.label :name, "ユーザー名（20文字以内）" %>
+        <%= f.text_field :name, class: "form-control", autocomplete: "name", required: "required" %>  
+        
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: 'required' %>
+        
+        <%= f.label :password, 'パスワード（6文字以上）' %>
+        <%= f.password_field :password, class: 'form-control', autocomplete: 'password', required: 'required' %>
+        
+        <%= f.label :password_confirmation, "確認用パスワード" %>
+        <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'password', required: 'required' %>
+
+        <%= f.submit "ユーザー登録する", class: "btn btn-primary" %>
+      <% end %>
+
     </div>
   </div>
 </div>
