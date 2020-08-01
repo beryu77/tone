@@ -1,3 +1,60 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post_form {
+  margin-top: 15px;
+}
+
+.col-right, .post-right {
+  margin-top: 1rem;
+  @include md {
+    margin-top: 0;
+  }
+}
+
+.add_image {
+  border: black 4px dashed;
+  width: 100%;
+  margin-top: 10px;
+  height: 380px;
+  line-height: 460px;
+  border-radius: 10px;
+  cursor: pointer;
+  @include lg {
+    margin-top: 0px;
+    height: 500px;
+    line-height: 550px;
+  }
+  i {
+    font-size: 120px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+#img_field {
+  color: #666;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+  &:hover {
+    background-color: #EDBC6C;
+    & i{
+      color: #fff;
+    }
+  }
+  img {
+    vertical-align: initial;
+    width: inherit;
+    height: inherit;
+  }
+}
