@@ -1,5 +1,10 @@
 /* mixins, variables, etc. */
 
+@mixin sm { @media (min-width: 576px) { @content; } }
+@mixin md { @media (min-width: 768px) { @content; } }
+@mixin lg { @media (min-width: 992px) { @content; } }
+
+
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
@@ -117,6 +122,12 @@ input {
   input {
     display: none;
   }
+}
+
+/* UserForm */
+.user_form {
+  max-width: 440px;
+  margin-top: 30px;
 }
 
 
