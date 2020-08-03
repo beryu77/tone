@@ -1,0 +1,43 @@
+  <%= form_with model: @post, local: true do |f| %>
+    <div class="form-group row">
+      <%= f.label :image, '投稿する写真をアップロードしてください' %>
+      <%= f.file_field :image, accept: 'image/jpg,image/jpeg,image/gif,image/png', class: 'custom-file-input' %>
+      <div class="col-md-6 add_image text-center" id="img_field" onClick="$('#post_image').click()"> 
+        <% if post.image? %>
+          <%= image_tag(post.image.url) %>
+        <% else %>
+        <i class="far fa-caret-square-down"><p class="help-block">※ 5MBまでの画像をアップロードできます</p></i>
+        <% end %>
+      </div>
+
+      <div class="col-md-6 col-right">
+        <div class="">
+          <%= f.label :location, '撮影場所' %>
+          <%= f.text_field :location, class: "form-control", rows: 2, placeholder: "場所、地名、住所" %> 
+       </div>
+
+        <div class="">
+          <%= f.label :equipment, '機材' %>
+          <%= f.text_field :equipment, class: "form-control", rows: 2, placeholder: "カメラ・レンズメーカー、モデル名など" %>
+        </div> 
+
+        <div class="">
+          <%= f.label :caption, 'キャプション' %>
+          <%= f.text_area :caption, class: 'form-control', rows: 12, placeholder: 'この写真についてのストーリーを入力（1000文字以内）' %>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
+        <%= f.submit "写真を登録する", class: "btn btn-primary form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('投稿できる画像は5MBまでです。 画像を選びなおしてください。');
+    }
+  });
+</script>

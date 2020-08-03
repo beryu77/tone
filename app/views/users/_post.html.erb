@@ -1,0 +1,19 @@
+<li id="post-<%= post.id %>">
+  <% if @user.avatar? %>
+    <%= image_tag(@user.avatar.url, size: "50", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+  <% else %>
+    <%= image_tag("no-avatar.png", size: "50", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+  <% end %>      
+  
+  <span class="image">
+    <%= link_to image_tag(post.image.url), post if post.image? %>
+  </span>
+
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+    <% if current_user?(post.user) %>
+      <%= link_to "投稿を削除", post, method: :delete,
+                                    data: { confirm: "削除しますか?" } %>
+    <% end %>
+  </span>
+</li> 

@@ -21,5 +21,15 @@ class Post < ApplicationRecord
   mount_uploader :image, ImageUploader
   default_scope -> { order(created_at: :desc) }   #投稿の順序を降順にする
   validates :user_id, presence: true
-  validates :caption, presence: true, length: { maximum: 1000 }
+  validates :caption, length: { maximum: 1000 }
+  validate :image_size
+
+  private
+
+  # アップロードされた画像のサイズをバリデーションする
+  def image_size 
+    if image.size > 5.megabytes
+        errors.add(:image, "5MBまでの画像を投稿してください")
+    end
+  end
 end

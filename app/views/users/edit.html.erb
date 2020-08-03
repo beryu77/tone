@@ -9,12 +9,12 @@
     <div class="text-center mb-3"> 
       <% if @user.avatar? %>
         <%= f.label :avatar, class: "form-image" do %>
-          <%= image_tag(@user.avatar.url, size: "200x200", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+          <%= image_tag(@user.avatar.url, size: "200", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
           <%= f.file_field :avatar %>
         <% end %>
       <% else %>
         <%= f.label :avatar, class: "form-image" do %>
-          <%= image_tag("no-avatar.png", size: "200x200", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+          <%= image_tag("no-avatar.png", size: "200", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
           <%= f.file_field :avatar %>
         <% end %>
       <% end %>
@@ -25,12 +25,6 @@
     
     <%= f.label :email, 'メールアドレス' %>
     <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: 'required' %>
-    
-    <%= f.label :password, 'パスワード（6文字以上）' %>
-    <%= f.password_field :password, class: 'form-control', autocomplete: 'password', required: 'required' %>
-    
-    <%= f.label :password_confirmation, "確認用パスワード" %>
-    <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'password', required: 'required' %>
 
     <%= f.label :profile, "自己紹介" %>
     <%= f.text_area :profile, class: 'form-control', rows: 5 %>
@@ -39,6 +33,5 @@
       <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-outline-dark" %>
       <%= f.submit "変更を保存する", class: "btn btn-primary" %>
     </div>
-    
   <% end %>
 </div>
