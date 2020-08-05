@@ -1,3 +1,10 @@
 <span class="image">
   <%= image_tag(@post.image.url) %>
 </span>
+
+<span>
+  <% if current_user?(@post.user) %>
+    <%= link_to "投稿を削除", @post, method: :delete,
+                                    data: { confirm: "削除しますか?" } %>
+  <% end %>
+</span>
