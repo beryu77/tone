@@ -70,5 +70,5 @@ gem 'bcrypt', '>= 3.1.12'  # パスワードをハッシュ化
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'carrierwave'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'faker', '>= 1.7.3'   #後で削除

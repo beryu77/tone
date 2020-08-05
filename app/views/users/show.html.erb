@@ -11,10 +11,8 @@
       <% end %>
     </div>
 
-
-
-    <div class="mx-auto">
-      <div class="">
+    <div class="card mx-auto col-md-3">
+      <div class="card-body mx-auto">
         <div class="user_info">
           <% if @user.avatar? %>
             <%= image_tag(@user.avatar.url, size: '200x200', class: 'avatar_present_img rounded-circle z-depth-0 avatar-image', alt: 'avatar image') %>
@@ -28,17 +26,41 @@
               <%= @user.name %>
             </div>
           </div>
-          <div class="user-status mx-auto">
+
+          <div class="user-menu mx-auto pb-2">
+            <% if logged_in? %>
+              <% if current_user.admin? %>
+                <% if @user.admin? || @user.guest? %>
+                  <!-- なにも表示しない -->
+                <% else %>
+                  <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
+                <% end %>
+              <% else %>
+                <% if current_user.id == @user.id %>
+                  <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
+                <% else %>
+                  <%= render 'follow_form', user: @user %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        
+
+          <div class="user-status mx-auto mt-3">
             <span class="status-value"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
           </div>
-          <div class="user-status mx-auto">
-        <%# <span class="status-value"><%= "フォロワー#{@user.followers.count.to_s(:delimited)}人" %></span>
-        <%# <span class="status-value"><%= "フォロー#{@user.followings.count.to_s(:delimited)}人" %></span>
+          <div class="user-status mx-auto mt-2">
+            <span class="status-value"><%= "フォロワー#{@user.followers.count.to_s(:delimited)}人" %></span>
+            <span class="status-value"><%= "フォロー#{@user.following.count.to_s(:delimited)}人" %></span>
           </div>
 
-        </div>
-      </div>
-    </div>    
+          <div class="user-profile mx-auto mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">
+            <%= simple_format(@user.profile) %>
+          </div>
+        </div> 
+
+      </div>    
+    </div>
   </div> 
 </div>
 
