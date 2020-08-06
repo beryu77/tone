@@ -50,8 +50,8 @@
             <span class="status-value"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
           </div>
           <div class="user-status mx-auto mt-2">
-            <span class="status-value"><%= "フォロワー#{@user.followers.count.to_s(:delimited)}人" %></span>
-            <span class="status-value"><%= "フォロー#{@user.following.count.to_s(:delimited)}人" %></span>
+            <span class="status-value"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path %></span>
+            <span class="status-value"><%= link_to "フォロー#{@user.following.count.to_s(:delimited)}人", following_user_path %></span>
           </div>
 
           <div class="user-profile mx-auto mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">

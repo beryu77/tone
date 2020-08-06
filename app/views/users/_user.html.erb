@@ -1,5 +1,11 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
+  <div class="user_info">
+    <% if user.avatar? %>
+      <%= image_tag(user.avatar.url, size: 50, class: 'avatar_present_img rounded-circle z-depth-0 avatar-image', alt: 'avatar image') %>
+    <% else %>
+      <%= image_tag("no-avatar.png", size: 50, class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+    <% end %>    
+  </div>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "削除", user, method: :delete,
