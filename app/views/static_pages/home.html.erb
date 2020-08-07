@@ -1,12 +1,18 @@
 <% provide(:title, "TONE") %>
-  <div class="center jumbotron">
-    <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
-    <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
+<div class="center">
+  <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
+</div>
 
-    <div class="background">
-      <div class="home-foto">
-        <%= image_tag('terminal.JPG', alt: 'Home Image', size: '1024x682') %>
-      </div>
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= render 'shared/feed' %>
     </div>
   </div>
+<% else %>
+  .
+  .
+  .
+<% end %>
 

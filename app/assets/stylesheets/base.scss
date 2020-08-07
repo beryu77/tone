@@ -5,8 +5,6 @@
 @mixin lg { @media (min-width: 992px) { @content; } }
 
 
-$gray-medium-light: #eaeaea;
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -42,16 +40,6 @@ body {
   color: white;
 }
 
-
-.background {
-  height: 1600px;
-}
-
-.home-foto {
-  text-align: center;
-  padding-top: 30px;
-}
-
 /* sidebar */
 
 aside {
@@ -80,15 +68,6 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -115,8 +94,6 @@ input {
   width: auto;
   margin-left: 0;
 }
-
-
 
 .form-image {
   input {
