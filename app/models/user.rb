@@ -28,6 +28,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+
   mount_uploader :avatar, AvatarUploader
 
   attr_accessor :remember_token # 仮想の属性（トークンをデータベースに保存せずに実装するため）
@@ -71,31 +74,42 @@ class User < ApplicationRecord
 
   # ユーザーをフォローする
   def follow(other_user)
-    following << other_user
+    unless self == other_user
+      self.active_relationships.find_or_create_by(followed_id: other_user.id)
+    end
   end
 
   # ユーザーをフォロー解除する
   def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+    relationship = self.active_relationships.find_by(followed_id: other_user.id)
+    relationship.destroy if relationship
   end
 
-  # ユーザーのステータスフィードを返す
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    self.following.include?(other_user)
+  end
+
+  # 投稿にいいねする
+  def like(post)
+    self.likes.find_or_create_by(post_id: post.id)
+  end
+
+  # 投稿のいいねを解除する
+  def unlike(post)
+    self.likes.find_by(post_id: post.id).destroy
+  end
+
+  # 現在のユーザーがいいねしてたらtrueを返す
+  def like?(post)
+    self.liked_posts.include?(post)
+  end
+
+  # ユーザーのフィードを返す
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
-
-  # 現在のユーザーがフォローしてたらtrueを返す
-  def following?(other_user)
-    following.include?(other_user)
-  end
-
-
-
-
-
-
-
 end
