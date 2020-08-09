@@ -1,8 +1,4 @@
 <% provide(:title, "TONE") %>
-<div class="center">
-  <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
-  <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
-</div>
 
 <% if logged_in? %>
   <div class="row">
@@ -11,8 +7,10 @@
     </div>
   </div>
 <% else %>
-  .
-  .
-  .
+  <div class="row mx-auto">
+    <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
+    <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
+  </div>
+
 <% end %>
 
