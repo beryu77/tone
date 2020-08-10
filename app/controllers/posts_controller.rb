@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = Comment.new(post_id: @post.id)
   end
 
   def destroy

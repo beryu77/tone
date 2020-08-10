@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <% render "comments/form", comment: comment %>
+<% end %>
+<div class="comment_list">
+  <div class="comment_list">コメント</div>
+  <% if @post.comments.any? %>
+    <%= render post.comments.includes(:user) %>
+  <% else %>
+    <div class="non-comment">まだコメントがありません</div>
+  <% end %>
+</div>
