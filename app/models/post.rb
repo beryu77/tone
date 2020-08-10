@@ -23,9 +23,9 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :caption, length: { maximum: 1000 }
   validate :image_size
-
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :comments, dependent: :destroy
 
   private
 
