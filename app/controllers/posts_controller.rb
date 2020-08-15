@@ -25,7 +25,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(post_id: @post.id)
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:user)
+    @comment = @post.comments.build(user_id: current_user.id) if current_user
   end
 
   def destroy
