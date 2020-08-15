@@ -3,6 +3,7 @@
 # Table name: comments
 #
 #  id         :integer          not null, primary key
+#  comment    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  post_id    :integer
@@ -14,7 +15,7 @@
 #  index_comments_on_user_id  (user_id)
 #
 class Comment < ApplicationRecord
-  belongs_to :post
   belongs_to :user
+  belongs_to :post, optional: true
   validates :comment, presence: true, length: { maximum: 100 }
 end
