@@ -18,5 +18,5 @@ class Like < ApplicationRecord
   belongs_to :user
   validates :post_id, presence: true
   validates :user_id, presence: true
-  valadates_uniqueness_of :post_id, scope: :user_id
+  validates_uniqueness_of :post_id, scope: :user_id
 end

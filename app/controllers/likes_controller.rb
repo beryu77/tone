@@ -1,18 +1,14 @@
 class LikesController < ApplicationController
   before_action :logged_in_user
-  before_action :target_post
 
   def create
-    current_user.like(@post)
+    @like = current_user.likes.create(post_id: params[:post_id])
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    current_user.unlike(@post)
-  end
-
-  private
-
-  def target_post
-    @post = Post.find(params[:post_id])
+    @like = Like.find_by(post_id: params[:post_id], user_id: current_user.id)
+    @like.destroy
+    redirect_back(fallback_location: root_path)
   end
 end
