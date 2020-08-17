@@ -6,4 +6,7 @@
   <span class="timestamp d-flex justify-content-end">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
+  <span class="d-flex justify-content-end">
+    いいね！ <%= post.liked_users.count %> 件
+  </span>
 </div> 

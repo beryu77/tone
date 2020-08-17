@@ -73,37 +73,23 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  # ユーザーをフォローする
-  def follow(other_user)
-    unless self == other_user
-      self.active_relationships.find_or_create_by(followed_id: other_user.id)
-    end
+  # フォローしているか確認する
+  def following?(user)
+    active_relationships.find_by(followed_id: user.id)
   end
 
-  # ユーザーをフォロー解除する
-  def unfollow(other_user)
-    relationship = self.active_relationships.find_by(followed_id: other_user.id)
-    relationship.destroy if relationship
+  #フォローするときのメソッド
+  def follow(user)
+    active_relationships.create!(followed_id: user.id)
   end
 
-  # 現在のユーザーがフォローしてたらtrueを返す
-  def following?(other_user)
-    self.following.include?(other_user)
+  #フォローを外すときのメソッド
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
   end
 
-  # 投稿にいいねする
-  def like(post)
-    self.likes.find_or_create_by(post_id: post.id)
-  end
-
-  # 投稿のいいねを解除する
-  def unlike(post)
-    self.likes.find_by(post_id: post.id).destroy
-  end
-
-  # 現在のユーザーがいいねしてたらtrueを返す
-  def like?(post)
-    self.liked_posts.include?(post)
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
   end
 
   # ユーザーのフィードを返す
