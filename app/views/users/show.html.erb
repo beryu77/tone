@@ -15,9 +15,9 @@
       <div class="card-body mx-auto">
         <div class="user_info">
           <% if @user.avatar? %>
-            <%= image_tag(@user.avatar.url, size: '200x200', class: 'avatar_present_img rounded-circle z-depth-0 avatar-image', alt: 'avatar image') %>
+            <%= image_tag(@user.avatar.url, size: '150x150', class: 'avatar_present_img rounded-circle z-depth-0 avatar-image', alt: 'avatar image') %>
           <% else %>
-            <%= image_tag("no-avatar.png", size: "200x200", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+            <%= image_tag("no-avatar.png", size: "150x150", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
           <% end %>    
         </div>
         <div class="d-flex flex-column mt-3">

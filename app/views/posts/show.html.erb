@@ -8,15 +8,13 @@
       <span>いいね！<%= @post.likes.count %>件</span>
       <span>コメント<%= @post.comments.count %>件</span>
 
-      <div>
-        <% if logged_in? %>
-          <% if current_user.already_liked?(@post) %>
-            <%= button_to "いいねを取り消す", post_like_path(@post), method: :delete %>
-          <% else %>
-            <%= button_to "いいね", post_likes_path(@post) %>
-          <% end %>
+      <% if logged_in? %>
+        <% if current_user.already_liked?(@post) %>
+          <%= link_to "いいねを取り消す", post_like_path(post_id: @post.id), method: :delete, remote: true, class:'btn btn-outline-dark' %>
+        <% else %>
+          <%= link_to "いいね", post_likes_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' %>
         <% end %>
-      </div>
+      <% end %>
   
       <% if logged_in? %>
         <%= render "comments/form" %>

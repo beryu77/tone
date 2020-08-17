@@ -2,7 +2,7 @@
 
 <div class="comment-form-box pt-3">
   <p class="comment-form-title far fa-comment-alt">コメント</p>
-  <%= form_with model: [@post, @comment], local: true do |f| %>
+  <%= form_with model: [@post, @comment], remote: true do |f| %>
     <%= f.text_area :comment, class: "form-control", rows: 5 %>
     <%= f.submit "コメントを送信", class: "btn btn-primary" %>
   <% end %>

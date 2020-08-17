@@ -78,16 +78,17 @@ class User < ApplicationRecord
     active_relationships.find_by(followed_id: user.id)
   end
 
-  #フォローするときのメソッド
+  # フォローする
   def follow(user)
     active_relationships.create!(followed_id: user.id)
   end
 
-  #フォローを外すときのメソッド
+  # フォローを外す
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
   end
 
+  # いいねしているか確認する
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
