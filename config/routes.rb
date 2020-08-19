@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
-      get :feed
+      get :timeline
       get :popular
     end
   end

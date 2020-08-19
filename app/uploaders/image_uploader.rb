@@ -2,7 +2,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  process resize_to_limit: [662, 440]
+  
+  process resize_to_fill: [662, 440, 'Center']
+
   # ファイルサイズを制限
   def size_range
    1..5.megabytes
