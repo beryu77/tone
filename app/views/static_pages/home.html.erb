@@ -1,16 +1,21 @@
 <% provide(:title, "TONE") %>
 
-<% if logged_in? %>
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
-<% else %>
-  <div class="row mx-auto">
-    <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
-    <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
-  </div>
+<div class="container pt-4">
+  <% if logged_in? %>
+    <% if posts.any? %>
+      <%= render "posts/index_timeline", posts: @timeline_posts %>
+    <% else %>
+      <div class="no-contents d-flex flex-column align-items-center justify-content-center mx-auto">
+        <div class="no-contents-title font-weight-bold">投稿がありません</div>
+        <%= render "posts/index_posts", posts: @posts %>
+      </div>
+    <% end %>
 
-<% end %>
+  <% else %>
+    <div class="no-contents d-flex flex-column align-items-center justify-content-center mx-auto">
+      <div class="no-contents-title font-weight-bold">ログインしてください</div>
+      <%= render "posts/index_posts", posts: @posts %>
+    </div>
+  <% end %>
+</div>
 

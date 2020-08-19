@@ -6,6 +6,11 @@ class PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(PER)
   end
 
+  def timeline
+    @timeline_posts = current_user.timeline.page(params[:page])
+    @timeline_posts = @timeline_posts.includes(:user)
+  end
+
   def popular
     @popular_post
   end

@@ -94,7 +94,7 @@ class User < ApplicationRecord
   end
 
   # ユーザーのフィードを返す
-  def feed
+  def timeline
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
     Post.where("user_id IN (#{following_ids})
