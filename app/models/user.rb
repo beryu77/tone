@@ -30,6 +30,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
 
   mount_uploader :avatar, AvatarUploader
 
@@ -91,6 +93,11 @@ class User < ApplicationRecord
   # いいねしているか確認する
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
+  end
+
+  # お気に入りにしているか確認する
+  def already_made_favorite?(post)
+    self.favorites.exists?(post_id: post.id)
   end
 
   # ユーザーのフィードを返す
