@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       get :following
       get :followers
+      get :favorite
     end
   end
 
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :show, :destroy] do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
     collection do
       get :timeline
       get :popular

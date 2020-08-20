@@ -33,6 +33,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
     @comment = @post.comments.build(user_id: current_user.id) if current_user
     @like = Like.new
+    @favorite = Favorite.new
   end
 
   def destroy
