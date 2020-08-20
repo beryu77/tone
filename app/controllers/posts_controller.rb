@@ -3,16 +3,15 @@ class PostsController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def index
-    @posts = Post.page(params[:page]).per(PER)
+    @posts = Post.page(params[:page])
   end
 
   def timeline
     @timeline_posts = current_user.timeline.page(params[:page])
-    @timeline_posts = @timeline_posts.includes(:user)
   end
 
   def popular
-    @popular_post
+    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page])
   end
 
   def new
