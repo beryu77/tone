@@ -9,14 +9,13 @@
             <% else %>
               <%= link_to image_tag("no-avatar.png", size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
             <% end %>
-              <%= link_to post.user.name, post.user %>
+            <%= link_to post.user.name, post.user %>
           </div>
           <div class="post-info">
-            <small><%= post.created_at.to_s(:datetime_jp) %></small>
+            <small><%= time_ago_in_words(post.created_at) %>前</small>
           </div>
-        </div>
-       
-          <%= link_to image_tag(post.image.to_s, class: "post_image", alt: "post image"), post %>
+        </div>    
+        <%= link_to image_tag(post.image.to_s, class: "post_image", alt: "post image"), post %>
         
         <div class="card-footer">
           <span><%= "コメント#{post.comments.count}件" %></span>

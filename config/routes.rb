@@ -21,8 +21,7 @@ Rails.application.routes.draw do
     collection do
       get :timeline
       get :popular
+      get :index
     end
   end
-  
-  
 end
