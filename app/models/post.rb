@@ -20,14 +20,22 @@ class Post < ApplicationRecord
   belongs_to :user
   mount_uploader :image, ImageUploader
   default_scope -> { order(created_at: :desc) }   #投稿の順序を降順にする
+
   validates :user_id, presence: true
+  validates :image, presence: true
   validates :caption, length: { maximum: 1000 }
+
   validate :image_size
+
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+
   has_many :comments, dependent: :destroy
+
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
+
+  has_many :best_photos, dependent: :destroy
 
   private
 
