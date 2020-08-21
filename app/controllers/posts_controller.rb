@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order(Arel.sql('count(likes.user_id) desc')).page(params[:page])
+    @popular_posts = Post.joins(:likes).group(:post_id).order('count(likes.user_id) desc').page(params[:page])
   end
 
   def new
@@ -22,9 +22,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "投稿が完了しました！"
-      redirect_to root_url
+      redirect_to root_path
     else
-      render 'static_pages/home'
+      redirect_to new_post_path
     end
   end
 
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "投稿を削除しました"
-    redirect_to request.referrer || root_url
+    redirect_to root_path
   end
 
   private

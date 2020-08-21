@@ -1,0 +1,2 @@
+module BestPhotosHelper
+end

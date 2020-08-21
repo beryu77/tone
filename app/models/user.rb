@@ -18,6 +18,8 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship",
                    foreign_key: "follower_id",
@@ -25,15 +27,19 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship",
                    foreign_key: "followed_id",
                    dependent: :destroy
+
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
+
   has_many :comments, dependent: :destroy
+
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
 
-  mount_uploader :avatar, AvatarUploader
+  has_many :best_photos, dependent: :destroy
 
   # 仮想の属性（トークンをデータベースに保存せずに実装するため）
   attr_accessor :remember_token
@@ -95,10 +101,16 @@ class User < ApplicationRecord
     self.likes.exists?(post_id: post.id)
   end
 
-  # お気に入りにしているか確認する
+  # お気に入りの投稿として保存しているか確認する
   def already_made_favorite?(post)
     self.favorites.exists?(post_id: post.id)
   end
+
+  # ベストフォトとして保存しているか確認する
+  def already_saved_best?
+    self.best_photos.exists?(user_id: current_user.id)
+  end
+
 
   # ユーザーのフィードを返す
   def timeline

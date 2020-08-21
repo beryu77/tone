@@ -2,9 +2,19 @@
   <%= image_tag(@post.image.url) %>
 </span>
 
-<div>
-  <% if current_user?(@post.user) %>
-    <%= link_to "投稿を削除", @post, method: :delete,
-                                    data: { confirm: "削除しますか?" } %>
+<div class="pt-2">
+  <% if logged_in? %>
+    <% if current_user?(@post.user) %>
+      <% if current_user.already_saved_best? %>
+        <%= link_to best_photo_path(post_id: @post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+          <i class="fas fa-heart"></i><%=" ベストフォトとして登録済" %>
+        <% end %>
+      <% else %>
+        <%= link_to best_photos_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
+          <i class="far fa-heart"></i><%=" ベストフォトとして登録する" %>
+        <% end %>
+      <% end %> 
+      <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>
+    <% end %>
   <% end %>
 </div>

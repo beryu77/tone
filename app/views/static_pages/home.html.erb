@@ -2,7 +2,7 @@
 
 <div class="container pt-4">
   <% if logged_in? %>
-    <% if posts.any? %>
+    <% if !@timeline_posts.nil? %>
       <%= render "posts/index_timeline", posts: @timeline_posts %>
     <% else %>
       <div class="no-contents d-flex flex-column align-items-center justify-content-center mx-auto">
