@@ -36,6 +36,7 @@ class Post < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
 
   has_many :best_photos, dependent: :destroy
+  has_many :best_photo, through: :best_photos, source: :user
 
   private
 

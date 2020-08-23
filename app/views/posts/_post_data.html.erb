@@ -6,12 +6,19 @@
   <% if logged_in? %>
     <% if current_user?(@post.user) %>
       <% if current_user.already_saved_best? %>
-        <%= link_to best_photo_path(post_id: @post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
-          <i class="fas fa-heart"></i><%=" ベストフォトとして登録済" %>
+        <% if current_user.saved_this_best?(@post) %>
+          <%= link_to best_photo_path(post_id: @post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+            <i class="fas fa-heart"></i><%=" ベストフォトとして登録済" %>
+          <% end %>
+        <% else %>
+          <%= link_to "", class:'btn btn-outline-dark' do %>
+            <i class="fas fa-heart"></i><%=" 他の写真がベストフォトとして登録されています" %>
+          <% end %>
+          
         <% end %>
       <% else %>
         <%= link_to best_photos_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
-          <i class="far fa-heart"></i><%=" ベストフォトとして登録する" %>
+          <i class="far fa-heart"></i><%=" ベストフォトとして登録" %>
         <% end %>
       <% end %> 
       <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>

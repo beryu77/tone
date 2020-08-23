@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
     else
       @posts = Post.page(params[:page])
       @posts = @posts.includes(:user)
-      redirect_to post_path 
+      redirect_to posts_path 
     end
   end
 
