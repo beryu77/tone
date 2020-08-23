@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :favorite_posts, through: :favorites, source: :post
 
   has_many :best_photos, dependent: :destroy
+  has_many :best_photo, through: :best_photos, source: :post
 
   # 仮想の属性（トークンをデータベースに保存せずに実装するため）
   attr_accessor :remember_token
@@ -106,11 +107,15 @@ class User < ApplicationRecord
     self.favorites.exists?(post_id: post.id)
   end
 
-  # ベストフォトとして保存しているか確認する
+  # ベストフォトをすでに保存しているか確認する（ユーザーはベストフォトを１枚だけ保存できる）
   def already_saved_best?
-    self.best_photos.exists?(user_id: current_user.id)
+    self.best_photos.exists?(user_id: self.id)
   end
 
+  # 表示している投稿がベストフォトとして保存されているか確認する
+  def saved_this_best?(post)
+    self.best_photos.exists?(user_id: self.id, post_id: post.id)
+  end
 
   # ユーザーのフィードを返す
   def timeline

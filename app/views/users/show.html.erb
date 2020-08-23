@@ -3,12 +3,18 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-8">
-      <% if @user.posts.any? %>
-        <ol class="posts">
-          <%= render @posts %>
-        </ol>
-          <%= paginate @posts %>
-      <% end %>
+      <div class="best_photo">
+        <h5>ベストフォト</h4>
+        <%= link_to image_tag(@post.image.url), @post if @post.image? %>
+      </div>
+      <div class="posts_index">
+        <% if @user.posts.any? %>
+          <div class="posts pt-5">
+            <%= render @posts %>
+          </div>
+            <%= paginate @posts %>
+        <% end %>
+      </div>
     </div>
 
     <div class="card mx-auto col-md-3">
