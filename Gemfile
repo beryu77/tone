@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # ----- 以下追記 -----
 gem 'bootstrap', '>= 4.3.1'
+gem 'semantic-ui-sass'
 gem 'bcrypt', '>= 3.1.12'  # パスワードをハッシュ化
 gem 'kaminari'
 gem 'jquery-rails'

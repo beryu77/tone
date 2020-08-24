@@ -10,9 +10,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
-
-    @best_photo = BestPhoto.find_by(user_id: @user.id)
-    @post = Post.find(@best_photo.post_id)
+    if @user.best_photos.exists?(user_id: @user.id)
+      @best_photo = BestPhoto.find_by(user_id: @user.id)
+      @post = Post.find(@best_photo.post_id)
+    end
   end
   
   def new
