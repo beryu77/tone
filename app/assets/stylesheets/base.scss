@@ -4,16 +4,10 @@
 @mixin md { @media (min-width: 768px) { @content; } }
 @mixin lg { @media (min-width: 992px) { @content; } }
 
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
-}
-
-main {
-  margin-right: auto;
-  margin-left: auto;
 }
 
 /* body */
@@ -21,27 +15,38 @@ body {
   margin: 0;
   display: flex;
   flex-flow: column;
+  flex-wrap: wrap;
   min-height: 100vh;
 }
 
 /* header */
 .navbar {
-  border-radius: 0px;
-  background-color: black;
+  border-bottom: 1px solid;
+  height: 70px;
 }
-.navbar-logo {
-  width: 150px;
+
+.navbar-brand {
+  font-size: 45px;
+  font-family: Times New Roman;
+  color: black;
 }
-.navbar-brand::before {
-  content: "\00a0";
+
+.navbar-brand:hover {
+  color: gray;
 }
 
 .nav-link {
-  color: white;
+  color: black;
 }
 
-.dropdown-menu {
-  padding-right: 200px;
+.nav-link:hover {
+  color: gray;
+}
+
+
+/* main */
+main {
+  width: 100%;
 }
 
 /* sidebar */

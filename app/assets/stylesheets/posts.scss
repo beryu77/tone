@@ -2,8 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 .post-cards {
-  padding: 0 40px;
+  padding: 0 20px;
   margin-bottom: 5px;
 }
 
@@ -11,18 +13,17 @@
   margin: 14px 0;
 }
 
-.card {
-  height: auto;
-  width: 662px;
-}
-
 .card-header {
-  height: 80px;
+  height: 75px;
 }
 
 .post-user {
   float: left;
   line-height: 48px;
+}
+
+.post-user-name {
+  color: black;
 }
 
 .post-info {
@@ -32,6 +33,11 @@
 
 .post-image {
   width: 100%;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 .post_form {

@@ -3,7 +3,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   
-  process resize_to_fill: [662, 440, 'Center']
+  process resize_to_fill: [800, 600, 'Center']
+
+  version :thumb do
+    process resize_to_fill: [540, 540, 'center']
+  end
 
   # ファイルサイズを制限
   def size_range
@@ -36,7 +40,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
+  # version :thumb do 
   #   process resize_to_fit: [50, 50]
   # end
 

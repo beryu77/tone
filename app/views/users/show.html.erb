@@ -4,8 +4,10 @@
   <div class="row">
     <div class="col-md-8">
       <div class="best_photo">
-        <h5>ベストフォト</h4>
-        <%= link_to image_tag(@post.image.url), @post if @post.image? %>
+        <% if @user.best_photos.exists?(user_id: @user.id) %>
+          <h5>ベストフォト</h5>
+          <%= link_to image_tag(@post.image.to_s), @post %>
+        <% end %>
       </div>
       <div class="posts_index">
         <% if @user.posts.any? %>
@@ -17,13 +19,13 @@
       </div>
     </div>
 
-    <div class="card mx-auto col-md-3">
-      <div class="card-body mx-auto">
-        <div class="user_info">
+    <div class="card col-md-3">
+      <div class="card-body">
+        <div class="user_info mx-auto" style="width: 150px;">
           <% if @user.avatar? %>
-            <%= image_tag(@user.avatar.url, size: '150x150', class: 'avatar_present_img rounded-circle z-depth-0 avatar-image', alt: 'avatar image') %>
+            <%= image_tag(@user.avatar.url, size: '150x150', class: 'rounded-circle avatar-image', alt: 'avatar image') %>
           <% else %>
-            <%= image_tag("no-avatar.png", size: "150x150", class: "avatar_present_img rounded-circle z-depth-0 avatar-image", alt: "avatar image") %>
+            <%= image_tag("no-avatar.png", size: "150x150", class: "rounded-circle avatar-image", alt: "avatar image") %>
           <% end %>    
         </div>
         <div class="d-flex flex-column mt-3">
@@ -64,13 +66,14 @@
             <%= simple_format(@user.profile) %>
           </div>
 
-          <div class="row mx-auto">
-            <%= link_to "保存した写真", favorite_user_path, class: "btn btn-lg btn-dark" %>
+          <div class="user-status mx-auto mt-3">
+            <%= link_to "保存した写真", favorite_user_path, class: "btn btn-outline-dark" %>
           </div>
-
-          <div class="row mx-auto">
-            <%= link_to "ユーザー登録", signup_path, class: "btn btn-lg btn-dark" %>
-            <%= link_to "新規投稿", new_post_path, class: "btn btn-lg btn-dark" %>
+          <div class="user-status mx-auto mt-3">
+            <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline-dark" %>
+          </div>
+          <div class="user-status mx-auto mt-3">
+            <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-dark" %>
           </div>
         </div> 
 
