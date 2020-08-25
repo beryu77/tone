@@ -15,7 +15,7 @@
             <small><%= time_ago_in_words(post.created_at) %>前</small>
           </div>
         </div>
-        <%= link_to image_tag(post.image.to_s, class: "post_image", alt: "post image"), post %>
+        <%= link_to image_tag(post.image.to_s, class: "post_image img-fluid", alt: "post image"), post %>
       
         <div class="card-footer">
           <span><%= "コメント#{post.comments.count}件" %></span>

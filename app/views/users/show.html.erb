@@ -1,72 +1,136 @@
 <% provide(:title, 'マイページ') %>
 
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="best_photo">
-        <% if @user.best_photos.exists?(user_id: @user.id) %>
-          <h5>ベストフォト</h5>
-          <%= link_to image_tag(@post.image.to_s), @post %>
-        <% end %>
-      </div>
-      <div class="posts_index">
-        <% if @user.posts.any? %>
-          <div class="posts pt-5">
-            <%= render @posts %>
-          </div>
-            <%= paginate @posts %>
-        <% end %>
+  <div class="row mx-auto" style="max-width: 700px;">
+    <div class="pr-5 col-md-5">
+      <div class="user-avator">
+        <% if @user.avatar? %>
+          <%= image_tag(@user.avatar.url, size: '180x180', class: 'rounded-circle img-fluid avatar-image', alt: 'avatar image') %>
+        <% else %>
+          <%= image_tag("no-avatar.png", size: "180x180", class: "rounded-circle img-fluid avatar-image", alt: "avatar image") %>
+        <% end %>    
       </div>
     </div>
-
-    <div class="card col-md-3">
-      <div class="card-body">
-        <div class="user_info mx-auto" style="width: 150px;">
-          <% if @user.avatar? %>
-            <%= image_tag(@user.avatar.url, size: '150x150', class: 'rounded-circle avatar-image', alt: 'avatar image') %>
-          <% else %>
-            <%= image_tag("no-avatar.png", size: "150x150", class: "rounded-circle avatar-image", alt: "avatar image") %>
-          <% end %>    
+    <div class="d-flex flex-column mt-3 col-md-7">
+      <div class="user-name">
+        <div class="font-weight-bold">
+          <%= @user.name %>
         </div>
-        <div class="d-flex flex-column mt-3">
-          <div class="user-name mx-auto">
-            <div class="font-weight-bold pb-2">
-              <%= @user.name %>
-            </div>
-          </div>
-
-          <div class="user-menu mx-auto pb-2">
-            <% if logged_in? %>
-              <% if current_user.admin? %>
-                <% if @user.admin? || @user.guest? %>
-                  <!-- なにも表示しない -->
-                <% else %>
-                  <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
-                <% end %>
-              <% else %>
-                <% if current_user.id == @user.id %>
-                  <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
-                <% else %>
-                  <%= render 'follow_form'%>
-                <% end %>
-              <% end %>
+      </div>
+      <div class="user-menu mt-3">
+        <% if logged_in? %>
+          <% if current_user.admin? %>
+            <% if @user.admin? || @user.guest? %>
+              <!-- なにも表示しない -->
+            <% else %>
+              <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
             <% end %>
-          </div>
-        
-
-          <div class="user-status mx-auto mt-3">
-            <span class="status-value"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
-          </div>
-          <div class="user-status mx-auto mt-2">
-            <span class="status-value"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path %></span>
+          <% else %>
+            <% if current_user.id == @user.id %>
+              <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
+            <% else %>
+              <%= render 'follow_form'%>
+            <% end %>
+          <% end %>
+          <div class="user-status mt-3">
+            <span class="status-value mr-4"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
+            <span class="status-value mr-4"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path %></span>
             <span class="status-value"><%= link_to "フォロー#{@user.following.count.to_s(:delimited)}人", following_user_path %></span>
           </div>
-
-          <div class="user-profile mx-auto mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">
+          <div class="user-profile mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">
             <%= simple_format(@user.profile) %>
           </div>
+        <% end %>
+      </div>
+    </div> 
+  </div>
 
-          <div class="user-status mx-auto mt-3">
+  <ul class="nav nav-tabs justify-content-center mt-3">
+    <li class="nav-item">
+      <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">投稿</span>
+          <div class="status-value"><%= @user.posts.count.to_s(:delimited) %></div>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">フォロー</span>
+          <div class="status-value" id="followings_<%= @user.id %>">
+            <%= @user.following.count.to_s(:delimited) %>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="followers-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">フォロワー</span>
+          <div class="status-value" id="followers_<%= @user.id %>">
+            <%= @user.followers.count.to_s(:delimited) %>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
+        <div class="user-status">
+          <span class="status-name">いいね</span>
+          <div class="status-value"><%= @user.likes.count.to_s(:delimited) %></div>
+        </div>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="posts-tab">
+      <% if @user.posts.any? %>
+        <div id="show-posts">
+          <%= render 'show_posts', posts: @posts %>
+        </div>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          投稿がありません
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="followings-tab">
+      <% if @user.following.any? %>
+        <%= render 'show_follows', objects: @followings %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          誰もフォローしていません
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="followers-tab">
+      <% if @user.followers.any? %>
+        <%= render 'show_follows', objects: @followers %>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          フォローされていません
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
+      <% if @user.likes.any? %>
+        <div id="show-likes">
+          <%= render 'show_posts', objects: @like_posts %>
+        </div>
+      <% else %>
+        <div class="no-contents d-flex justify-content-center align-items-center">
+          いいね！ した投稿がありません
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="user-status mx-auto mt-3">
             <%= link_to "保存した写真", favorite_user_path, class: "btn btn-outline-dark" %>
           </div>
           <div class="user-status mx-auto mt-3">
@@ -75,11 +139,3 @@
           <div class="user-status mx-auto mt-3">
             <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-dark" %>
           </div>
-        </div> 
-
-      </div>    
-    </div>
-    
-  </div> 
-</div>
-

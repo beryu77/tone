@@ -9,6 +9,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [540, 540, 'center']
   end
 
+  version :middle do
+    process resize_to_fill: [600, 400, 'center']
+  end
+  
+
   # ファイルサイズを制限
   def size_range
    1..15.megabytes
