@@ -1,8 +1,4 @@
-<span class="image">
-  <%= image_tag(@post.image.url) %>
-</span>
-
-<div class="pt-2">
+<div class="mt-2 mb-2 float-right">
   <% if logged_in? %>
     <% if current_user?(@post.user) %>
       <% if current_user.already_saved_best? %>
@@ -13,8 +9,7 @@
         <% else %>
           <%= link_to "", class:'btn btn-outline-dark' do %>
             <i class="fas fa-heart"></i><%=" 他の写真がベストフォトとして登録されています" %>
-          <% end %>
-          
+          <% end %>    
         <% end %>
       <% else %>
         <%= link_to best_photos_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
@@ -24,4 +19,7 @@
       <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>
     <% end %>
   <% end %>
+</div>
+<div class="mb-2">
+  <%= image_tag(@post.image.url, class:"img-fluid") %>
 </div>

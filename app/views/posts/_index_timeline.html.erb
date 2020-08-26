@@ -1,7 +1,7 @@
 <div class="row post-cards">
   <% posts.each do |post| %>
     <div class="col-md-8 mx-auto card-index">
-      <div class="card">
+      <div class="card bg-white">
         <div class="card-header">
           <div class="post-user">
             <% if post.user.avatar? %>
@@ -18,8 +18,8 @@
         <%= link_to image_tag(post.image.to_s, class: "post_image img-fluid", alt: "post image"), post %>
         
         <div class="card-footer text-right">
-          <span><%= "いいね！#{post.likes.count}件" %></span>
-          <span><%= "コメント#{post.comments.count}件" %></span>
+          <span><small><%= "いいね！#{post.likes.count}件" %></small></span>
+          <span><small><%= "コメント#{post.comments.count}件" %></small></span>
         </div>
       </div>
     </div>

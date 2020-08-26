@@ -9,7 +9,7 @@
             <% else %>
               <%= link_to image_tag("no-avatar.png", size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
             <% end %>
-            <%= link_to post.user.name, post.user %>
+            <%= link_to post.user.name, post.user, class: "post-user-name" %>
           </div>
           <div class="post-info">
             <small><%= time_ago_in_words(post.created_at) %>前</small>
@@ -17,9 +17,9 @@
         </div>
         <%= link_to image_tag(post.image.to_s, class: "post_image img-fluid", alt: "post image"), post %>
       
-        <div class="card-footer">
-          <span><%= "コメント#{post.comments.count}件" %></span>
-          <span><%= "いいね！#{post.likes.count}件" %></span>
+        <div class="card-footer text-right">
+          <span><small><%= "いいね！#{post.likes.count}件" %></small></span>
+          <span><small><%= "コメント#{post.comments.count}件" %></small></span>
         </div>
       </div>
     </div>
