@@ -15,7 +15,11 @@
 #  index_comments_on_user_id  (user_id)
 #
 class Comment < ApplicationRecord
+  belongs_to :post
   belongs_to :user
-  belongs_to :post, optional: true
+  has_many :comment_likes
+  has_many :comment_user, through: :comment_likes, source: :user
+  validates :post_id, presence: true
+  validates :user_id, presence: true
   validates :comment, presence: true, length: { maximum: 100 }
 end

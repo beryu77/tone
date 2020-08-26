@@ -10,6 +10,18 @@
   box-sizing:         border-box;
 }
 
+
+.user-name {
+  color: black;
+}
+
+.user-name:hover {
+  color: gray;
+}
+
+
+
+
 /* body */
 body {
   margin: 0;
@@ -17,6 +29,7 @@ body {
   flex-flow: column;
   flex-wrap: wrap;
   min-height: 100vh;
+  background-color: #EEEEEE;
 }
 
 /* header */
@@ -30,6 +43,8 @@ body {
   font-family: Times New Roman;
   color: black;
 }
+
+
 
 /*
 

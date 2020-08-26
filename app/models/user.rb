@@ -39,6 +39,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
 
+  has_many :comment_likes
+  has_many :comment_post, through: :comment_likes, source: :post
+
   has_many :best_photos, dependent: :destroy
   has_many :best_photo, through: :best_photos, source: :post
 
@@ -115,6 +118,11 @@ class User < ApplicationRecord
   # 表示している投稿がベストフォトとして保存されているか確認する
   def saved_this_best?(post)
     self.best_photos.exists?(user_id: self.id, post_id: post.id)
+  end
+
+  # コメントにいいねしているか確認する
+  def comment_liked?(comment)
+    self.comment_likes.exists?(comment_id: comment.id)
   end
 
   # ユーザーのフィードを返す
