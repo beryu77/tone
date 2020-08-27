@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   resources :best_photos, only: [:create, :destroy]
 
   resources :posts, only: [:new, :create, :show, :destroy] do
-    resources :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
-    resources :favorites, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
+    resource :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
     collection do
       get :timeline
       get :popular
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create, :destroy] do
-    resources :comment_likes, only: [:create, :destroy]
+    resource :comment_likes, only: [:create, :destroy]
   end
 end
+ 
