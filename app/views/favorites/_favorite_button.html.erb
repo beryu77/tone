@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <% if current_user.already_made_favorite?(@post) %>
+    <%= link_to post_favorites_path(post_id: @post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+      <i class="fas fa-bookmark"></i><%=" 保存済み" %>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
+      <i class="far fa-bookmark"></i><%=" 保存する" %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -103,7 +103,7 @@ class User < ApplicationRecord
   # いいねしているか確認する
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
-  end
+  end 
 
   # お気に入りの投稿として保存しているか確認する
   def already_made_favorite?(post)
