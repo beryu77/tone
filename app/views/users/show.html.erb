@@ -20,7 +20,7 @@
       <div class="user-menu mt-3">
         <% if logged_in? %>
           <% if current_user.admin? %>
-            <% if @user.admin? || @user.guest? %>
+            <% if @user.admin? %>
               <!-- なにも表示しない -->
             <% else %>
               <%= link_to 'このユーザーを削除する', @user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-outline-dark' %>
@@ -29,7 +29,7 @@
             <% if current_user.id == @user.id %>
               <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
             <% else %>
-              <%= render 'follow_form'%>
+              <%= render 'follow_form', user: @user %>
             <% end %>
           <% end %>
           <div class="user-status mt-3">
@@ -77,8 +77,8 @@
     <li class="nav-item">
       <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
-          <span class="status-name">いいね</span>
-          <span class="status-value"><%= @user.likes.count.to_s(:delimited) %></span>
+          <span class="status-name">保存した投稿</span>
+          <span class="status-value"><%= @user.favorites.count.to_s(:delimited) %></span>
         </div>
       </a>
     </li>
@@ -88,7 +88,7 @@
     <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="posts-tab">
       <% if @user.posts.any? %>
         <div id="show-posts">
-          <%= render 'show_posts', posts: @posts %>
+          <%= render "show_posts", posts: @posts %>
         </div>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
@@ -98,7 +98,7 @@
     </div>
     <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="followings-tab">
       <% if @user.following.any? %>
-        <%= render 'show_follows', objects: @followings %>
+        <%= render "show_follows", objects: @followings %>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
           誰もフォローしていません
@@ -107,7 +107,7 @@
     </div>
     <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="followers-tab">
       <% if @user.followers.any? %>
-        <%= render 'show_follows', objects: @followers %>
+        <%= render "show_follows", objects: @followers %>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
           フォローされていません
@@ -127,15 +127,3 @@
     </div>
   </div>
 </div>
-
-
-
-    <div class="user-status mx-auto mt-3">
-            <%= link_to "保存した写真", favorite_user_path, class: "btn btn-outline-dark" %>
-          </div>
-          <div class="user-status mx-auto mt-3">
-            <%= link_to "ユーザー登録", signup_path, class: "btn btn-outline-dark" %>
-          </div>
-          <div class="user-status mx-auto mt-3">
-            <%= link_to "新規投稿", new_post_path, class: "btn btn-outline-dark" %>
-          </div>
