@@ -20,8 +20,8 @@
         <% end %>
       </div>
       
-      <div class="comment-list mt-5">
-        <p class="comment-title border-bottom border-dark mt-5">コメント一覧<span class="float-right">コメント<%= @post.comments.count %>件</span></p>
+      <div class="comment-list">
+        <p class="comment-title border-bottom border-dark mt-3">コメント一覧<span class="float-right">コメント<%= @post.comments.count %>件</span></p>
         <div class="comment-data mt-4">
           <% @comments.each do |comment| %>
             <div class="mt-4">
@@ -46,6 +46,11 @@
                       <i class="far fa-heart"></i>
                     <% end %>
                   <% end %>
+                <% end %>
+              </span>
+              <span class="float-left pt-3 pr-2">
+                <% if current_user.admin? %>
+                  <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark btn-sm'%>
                 <% end %>
               </span>
             </div>   

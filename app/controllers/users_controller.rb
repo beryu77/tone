@@ -4,12 +4,14 @@ class UsersController < ApplicationController
   before_action :admin_user, only: %i[index destroy]
 
   def index
-    @users = User.page(params[:page]) 
+    @users = User.order(admin: :DESC, id: :ASC).page(params[:page]) 
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
+    @followings = @user.following
+    @followers = @user.followers
     if @user.best_photos.exists?(user_id: @user.id)
       @best_photo = BestPhoto.find_by(user_id: @user.id)
       @post = Post.find(@best_photo.post_id)
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "ユーザーを削除しました"
     redirect_to users_url
   end
 

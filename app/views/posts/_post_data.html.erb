@@ -1,5 +1,9 @@
 <div class="mt-2 mb-2 float-right">
   <% if logged_in? %>
+    <% if current_user.admin? %>
+      <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>
+    <% end %>
+
     <% if current_user?(@post.user) %>
       <% if current_user.already_saved_best? %>
         <% if current_user.saved_this_best?(@post) %>
