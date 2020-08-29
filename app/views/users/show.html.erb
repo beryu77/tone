@@ -1,7 +1,7 @@
 <% provide(:title, 'マイページ') %>
 
 <div class="container mt-5">
-  <div class="row mx-auto" style="max-width: 700px;">
+  <div class="row mx-auto page-top" style="max-width: 700px;">
     <div class="col-md-5">
       <div class="user-avator">
         <% if @user.avatar? %>
@@ -27,7 +27,11 @@
             <% end %>
           <% else %>
             <% if current_user.id == @user.id %>
-              <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
+              <% if guest_user %>
+                <!-- なにも表示しない -->
+              <% else %>
+                <%= link_to 'プロフィール編集', edit_user_path(current_user), class:'btn btn-outline-dark' %>
+              <% end %>
             <% else %>
               <%= render 'follow_form', user: @user %>
             <% end %>
@@ -77,7 +81,7 @@
     <li class="nav-item">
       <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
-          <span class="status-name">保存した投稿</span>
+          <span class="status-name">お気に入り</span>
           <span class="status-value"><%= @user.favorites.count.to_s(:delimited) %></span>
         </div>
       </a>

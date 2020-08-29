@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  post '/guest', to: 'guest_sessions#create'
 
   resources :users do
     member do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :best_photos, only: [:create, :destroy]
 
-  resources :posts, only: [:new, :create, :show, :destroy] do
+  resources :posts do
     resource :likes, only: [:create, :destroy]
     resource :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
