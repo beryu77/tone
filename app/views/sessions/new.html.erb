@@ -1,14 +1,13 @@
 <% provide(:title, "ログイン") %>
-<h1>ログイン</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="container user-form">
+  <h2 class="mt-3 pb-3">ログイン</h2>
     <%= form_with scope: :session, url: login_path, local: true do |f| %>
-
-      <%= f.label :email %>
+      
+      <%= f.label :email, "メールアドレス" %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-controll' %>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>
@@ -16,9 +15,11 @@
         <span>ログイン情報を記憶させる</span>
       <% end %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <div class="">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      </div>
     <% end %>
 
-    <p>New user? <%= link_to "ユーザー登録", signup_path %></p>
-  </div>
+  <p><%= link_to "ゲストログイン", guest_path, method: :post, class:"btn btn-success" %></p>
+  <p><%= link_to "新規登録", signup_path, class:"btn btn-light" %></p>
 </div>

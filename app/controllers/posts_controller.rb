@@ -41,6 +41,20 @@ class PostsController < ApplicationController
     @favorite = Favorite.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:success] = "投稿の編集が完了しました"
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @post.destroy
     flash[:success] = "投稿を削除しました"
