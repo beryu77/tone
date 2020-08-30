@@ -44,8 +44,6 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-
-
   private
 
   # アップロードされた画像のサイズをバリデーションする
@@ -54,5 +52,4 @@ class Post < ApplicationRecord
         errors.add(:image, "15MBまでの画像を投稿してください")
     end
   end
-
 end

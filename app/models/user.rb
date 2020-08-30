@@ -42,6 +42,8 @@ class User < ApplicationRecord
   has_many :comment_likes
   has_many :comment_post, through: :comment_likes, source: :post
 
+  has_many :contests, dependent: :destroy
+
   has_many :best_photos, dependent: :destroy
   has_many :best_photo, through: :best_photos, source: :post
 

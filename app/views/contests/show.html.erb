@@ -1,0 +1,20 @@
+<% provide :title, "コンテスト" %>
+
+<div class="container mt-4 pb-3">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="">
+        <h2><%= @contest.title %></h2>
+        <%= image_tag(@contest.image.url, size: "", class: "img-fluid", alt: "avatar image") %>
+      </div>
+      <div>
+        <%= @contest.main %>
+      </div>
+      <div>
+        <%= @contest.condition %>
+      </div>
+      <%= link_to "編集", edit_contest_path(@contest.id), class: "btn btn-outline-dark" %>
+      <%= link_to "削除", @contest, method: :delete, data: { confirm: "削除しますか?" }, class: "btn btn-outline-dark" %>
+    </div>
+  </div>
+</div>

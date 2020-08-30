@@ -11,6 +11,9 @@
         <li class="nav-item">
           <%= link_to "ユーザー一覧", users_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "コンテスト作成", new_contest_path, class: "nav-link" %>
+        </li>
       <% end %>
       <% if logged_in? %>
         <li class="nav-item">
@@ -32,6 +35,11 @@
       <li class="nav-item">
         <%= link_to feature_posts_path, class: "nav-link" do %>
           <i class="fas fa-heart"></i><%= " 注目の写真" %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to contests_path, class: "nav-link" do %>
+          <i class="fas fa-heart"></i><%= " コンテスト" %>
         <% end %>
       </li>
     </ul>

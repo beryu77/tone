@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: contests
+#
+#  id         :integer          not null, primary key
+#  condition  :text
+#  image      :string
+#  main       :text
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
+one:
+  user: 1
+  image: MyString
+
+two:
+  user: 1
+  image: MyString
