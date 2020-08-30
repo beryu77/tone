@@ -33,5 +33,9 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy] do
     resource :comment_likes, only: [:create, :destroy]
   end
+  
+  resources :contests
+
+  
 end
  

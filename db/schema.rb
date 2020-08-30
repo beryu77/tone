@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_014222) do
+ActiveRecord::Schema.define(version: 2020_08_29_111523) do
 
   create_table "best_photos", force: :cascade do |t|
     t.integer "post_id"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 2020_08_26_014222) do
     t.string "comment"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "main"
+    t.text "condition"
   end
 
   create_table "favorites", force: :cascade do |t|
