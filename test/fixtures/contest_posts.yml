@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: contest_posts
+#
+#  id         :integer          not null, primary key
+#  caption    :text
+#  equipment  :string
+#  image      :string
+#  location   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
+one:
+  caption: MyText
+  equipment: MyString
+  image: MyString
+  location: MyString
+  user_id: 1
+
+two:
+  caption: MyText
+  equipment: MyString
+  image: MyString
+  location: MyString
+  user_id: 1

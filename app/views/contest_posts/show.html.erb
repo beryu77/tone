@@ -1,0 +1,60 @@
+<% provide :title, "コンテスト投稿" %>
+
+<div class="container pt-4 pb-3">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= image_tag(@contest_post.image.url, class:"img-fluid") %>
+      
+      <% if logged_in? && current_user.admin? %>
+        <% if current_user.saved_gold? %>
+          <% if current_user.saved_this_gold?(@contest_post) %>
+            <%= link_to gold_post_path(contest_post_id: @contest_post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+              <i class="fas fa-heart"></i><%=" 金賞として登録済" %>
+            <% end %>
+          <% else %＞
+            <%= link_to "", class:"btn btn-outline-dark" do %>
+              <i class="fas fa-heart"></i><%=" 他の写真が金賞として登録されています" %>
+            <% end %>    
+          <% end %>
+        <% else %>
+          <%= link_to gold_post_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
+            <i class="far fa-heart"></i><%=" 金賞として登録" %>
+          <% end %>
+        <% end %> 
+
+        <% if current_user.saved_silver? %>
+          <% if current_user.saved_this_silver?(@contest_post) %>
+            <%= link_to silver_post_path(contest_post_id: @contest_post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+              <i class="fas fa-heart"></i><%=" 銀賞として登録済" %>
+            <% end %>
+          <% else %＞
+            <%= link_to "", class:"btn btn-outline-dark" do %>
+              <i class="fas fa-heart"></i><%=" 他の写真が銀賞として登録されています" %>
+            <% end %>    
+          <% end %>
+        <% else %>
+          <%= link_to silver_post_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
+            <i class="far fa-heart"></i><%=" 銀賞として登録" %>
+          <% end %>
+        <% end %> 
+
+        <% if current_user.saved_win? %>
+          <% if current_user.saved_this_win?(@contest_post) %>
+            <%= link_to win_a_post_path(contest_post_id: @contest_post.id), method: :delete, remote: true, class:'btn btn-outline-dark' do %>
+              <i class="fas fa-heart"></i><%=" 入賞として登録済" %>
+            <% end %>
+          <% else %＞
+            <%= link_to "", class:"btn btn-outline-dark" do %>
+              <i class="fas fa-heart"></i><%=" 他の写真が入賞として登録されています" %>
+            <% end %>    
+          <% end %>
+        <% else %>
+          <%= link_to win_a_post_path(post_id: @post.id), method: :post, remote: true, class:'btn btn-outline-dark' do %>
+            <i class="far fa-heart"></i><%=" 入賞として登録" %>
+          <% end %>
+        <% end %> 
+
+      <% end %>
+    </div>
+  </div>
+</div>

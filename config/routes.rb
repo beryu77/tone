@@ -35,7 +35,10 @@ Rails.application.routes.draw do
   end
   
   resources :contests
-
+  resources :contest_posts, only: [:new, :create, :index]
   
+  resources :gold_prizes
+  resources :silver_prizes
+  resources :win_a_prizes
 end
  

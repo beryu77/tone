@@ -3,6 +3,7 @@
 <div class="container mt-4 pb-3">
   <div class="row">
     <div class="col-md-8 mx-auto">
+      <%= link_to "投稿写真一覧", contest_posts_path, class: "btn btn-outline-dark" %>
       <div class="">
         <h2><%= @contest.title %></h2>
         <%= image_tag(@contest.image.url, size: "", class: "img-fluid", alt: "avatar image") %>
@@ -15,6 +16,7 @@
       </div>
       <%= link_to "編集", edit_contest_path(@contest.id), class: "btn btn-outline-dark" %>
       <%= link_to "削除", @contest, method: :delete, data: { confirm: "削除しますか?" }, class: "btn btn-outline-dark" %>
+      <%= link_to "コンテストに投稿する", new_contest_post_path, class: "btn btn-outline-dark" %>
     </div>
   </div>
 </div>

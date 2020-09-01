@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_111523) do
+ActiveRecord::Schema.define(version: 2020_09_01_125806) do
 
   create_table "best_photos", force: :cascade do |t|
     t.integer "post_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2020_08_29_111523) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "contest_posts", force: :cascade do |t|
+    t.text "caption"
+    t.string "equipment"
+    t.string "image"
+    t.string "location"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contests", force: :cascade do |t|
     t.integer "user_id"
     t.string "image"
@@ -57,6 +67,13 @@ ActiveRecord::Schema.define(version: 2020_08_29_111523) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "gold_prizes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -90,6 +107,13 @@ ActiveRecord::Schema.define(version: 2020_08_29_111523) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "silver_prizes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -101,6 +125,13 @@ ActiveRecord::Schema.define(version: 2020_08_29_111523) do
     t.string "avatar"
     t.text "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "win_a_prizes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

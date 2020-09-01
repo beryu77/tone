@@ -1,0 +1,30 @@
+<div class="row post-cards">
+  <% @contest_posts.each do |post| %>
+    <div class="col-lg-4 col-md-12 card-index">
+      <div class="card bg-white">
+        <div class="card-header">
+          <div class="post-user">
+            <% if post.user.avatar? %>
+              <%= link_to image_tag(post.user.avatar.to_s, size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
+            <% else %>
+              <%= link_to image_tag("no-avatar.png", size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
+            <% end %>
+            <%= link_to post.user.name, post.user, class: "post-user-name" %>
+          </div>
+          <div class="post-info">
+            <small><%= time_ago_in_words(post.created_at) %>前</small>
+          </div>
+        </div>
+        <img class="card-img-top">
+          <%= link_to image_tag(post.image.url.to_s, class: "post_image img-fluid", alt: "post image"), post %>
+        </img>
+        <div class="card-footer text-right">
+          <span><small><%= "いいね！#{post.likes.count}件" %></small></span>
+          <span><small><%= "コメント#{post.comments.count}件" %></small></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= paginate @contest_posts %> 
+
