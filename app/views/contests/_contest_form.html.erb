@@ -4,7 +4,7 @@
     <div class="col-md-8 mx-auto offset-3">
     <h2>コンテスト作成</h2>
     
-      <%= form_with model: @contest, local: true do |f| %>
+      <%= form_with model: @contest do |f| %>
         <%= f.label :title, "コンテスト名" %>
         <%= f.text_field :title, class: "form-control" %>  
         
@@ -17,6 +17,7 @@
         <%= f.label :image, "投稿する写真をアップロードしてください" %>
         <%= f.file_field :image, accept: "image/jpg,image/jpeg,image/gif,image/png", class: "image" %>
         
+
         <%= f.submit "作成する", class: "btn btn-primary" %>
       <% end %>
     </div>
