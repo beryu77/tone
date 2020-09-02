@@ -13,7 +13,7 @@ class ContestPostsController < ApplicationController
     @contest_post = current_user.contest_posts.build(contest_params)
     if @contest_post.save
       flash[:success] = "投稿が完了しました！"
-      redirect_to contest_posts_path
+      redirect_to root_path
     else
       redirect_to new_contest_post_path
     end
@@ -26,6 +26,6 @@ class ContestPostsController < ApplicationController
   private
 
   def contest_params
-    params.require(:post).permit(:image, :caption, :location, :equipment)
+    params.require(:contest_post).permit(:image, :caption, :location, :equipment)
   end
 end 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_125806) do
+ActiveRecord::Schema.define(version: 2020_09_02_065828) do
 
   create_table "best_photos", force: :cascade do |t|
     t.integer "post_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_125806) do
   end
 
   create_table "gold_prizes", force: :cascade do |t|
-    t.integer "post_id"
+    t.integer "contest_post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_125806) do
   end
 
   create_table "silver_prizes", force: :cascade do |t|
-    t.integer "post_id"
+    t.integer "contest_post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2020_09_01_125806) do
   end
 
   create_table "win_a_prizes", force: :cascade do |t|
-    t.integer "post_id"
+    t.integer "contest_post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
