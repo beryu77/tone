@@ -43,9 +43,14 @@ class User < ApplicationRecord
   has_many :comment_post, through: :comment_likes, source: :post
 
   has_many :contests, dependent: :destroy
+  has_many :contest_posts
 
   has_many :best_photos, dependent: :destroy
   has_many :best_photo, through: :best_photos, source: :post
+
+  has_many :gold_prizes, dependent: :destroy
+  has_many :silver_prizes, dependent: :destroy
+  has_many :win_a_prizes, dependent: :destroy
 
   # 仮想の属性（トークンをデータベースに保存せずに実装するため）
   attr_accessor :remember_token
@@ -134,7 +139,7 @@ class User < ApplicationRecord
 
   # 表示している投稿が金賞として保存されているか確認する
   def saved_this_gold?(contest_post)
-    self.gold_prizes.exists?(user_id: self.id, post_id: post.id)
+    self.gold_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
   end
 
   # 銀賞をすでに保存しているか確認する
@@ -144,7 +149,7 @@ class User < ApplicationRecord
 
   # 表示している投稿が銀賞として保存されているか確認する
   def saved_this_silver?(contest_post)
-    self.silver_prizes.exists?(user_id: self.id, post_id: post.id)
+    self.silver_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
   end
 
   # 入賞をすでに保存しているか確認する
@@ -154,7 +159,7 @@ class User < ApplicationRecord
 
   # 表示している投稿が入賞として保存されているか確認する
   def saved_this_win?(contest_post)
-    self.win_a_prizes.exists?(user_id: self.id, post_id: post.id)
+    self.win_a_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
   end
 
   # ユーザーのフィードを返す

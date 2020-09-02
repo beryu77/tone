@@ -12,16 +12,20 @@
 #  user_id    :integer
 #
 class ContestPost < ApplicationRecord
-belongs_to :user
-mount_uploader :image, ContestImageUploader
+  belongs_to :user
+  has_many :gold_prizes, dependent: :destroy
+  has_many :silver_prizes, dependent: :destroy
+  has_many :win_a_prizes, dependent: :destroy
+  
+  mount_uploader :image, ImageUploader
 
-validates :user_id, presence: true
-validates :image, presence: true
-validates :caption, length: { maximum: 1000 }
+  validates :user_id, presence: true
+  validates :image, presence: true
+  validates :caption, length: { maximum: 1000 }
 
-validate :image_size
+  validate :image_size
 
-private
+  private
 
   # アップロードされた画像のサイズをバリデーションする
   def image_size 
