@@ -5,10 +5,10 @@
 
   <div class="container">
     <h2 class="text-center font-weight-bold mt-4 mb-3">すべてのユーザー</h2>
-    <div class="row user-cards">
+    <div class="row">
       <% @users.each do |user| %>
         <div class="col-lg-4 col-md-6 col-sm-6 card-index">
-          <div class="user-card card align-items-center">
+          <div class="card align-items-center">
             <% if user.avatar? %>
               <%= link_to image_tag(user.avatar.to_s, size: "150x150", class: "rounded-circle", alt: "avatar image"), user %>
             <% else %>
@@ -17,7 +17,7 @@
             <%= link_to user.name, user, class: 'user-name' %>
 
             <% if current_user.admin? %>
-              <%= link_to 'このユーザーを削除する', user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-danger' %>
+              <%= link_to 'このユーザーを削除する', user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-dark' %>
             <% end %>
           </div>
         </div>

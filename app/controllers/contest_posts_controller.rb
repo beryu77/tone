@@ -26,6 +26,6 @@ class ContestPostsController < ApplicationController
   private
 
   def contest_params
-    params.require(:contest_post).permit(:image, :caption, :location, :equipment)
+    params.require(:contest_post).permit(:image, :title, :caption, :location, :equipment)
   end
 end 

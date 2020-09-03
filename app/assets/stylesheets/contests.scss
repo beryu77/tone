@@ -2,6 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.card-header {
-  
+.contest-title {
+ font-size: 18px;
+ font-weight: bold;
+}
+
+.contest-header {
+  height: 50px;
+}
+
+.contest-footer {
+  height: 40px;
+}
+
+.contest-main {
+  font-size: 20px;
+}
+
+.contest-condition {
+  font-size: 18px;
+}
+
+.photo-title {
+  font-size: 20px;
+}
+
+.photo-explanation {
+  background-color: #EEEEEE;
+  padding: 20px;
 }

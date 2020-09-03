@@ -13,7 +13,6 @@ class ContestsController < ApplicationController
   def create
     @contest = current_user.contests.build(contest_params)
     if @contest.save
-      flash[:success] = "コンテストが作成できました！"
       redirect_to @contest
     else
       redirect_to new_contest_path
@@ -31,7 +30,6 @@ class ContestsController < ApplicationController
   def update 
     @contest = Contest.find(params[:id])
     if @contest.update_attributes(contest_params)
-      flash[:success] = "コンテストの編集が完了しました"
       redirect_to @contest
     else
       render "edit"
@@ -47,7 +45,10 @@ class ContestsController < ApplicationController
   private
 
   def contest_params
-    params.require(:contest).permit(:title, :main, :condition, :image)
+    params.require(:contest).permit(:title, :main, :condition, :image, 
+                                    :gold_prize, :gold_title, :gold_explanation,
+                                    :silver_prize, :silver_title, :silver_explanation,
+                                    :win_a_prize, :win_title, :win_explanation)
   end
 
   def correct_user

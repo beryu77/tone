@@ -39,7 +39,7 @@ body {
   flex-flow: column;
   flex-wrap: wrap;
   min-height: 100vh;
-  background-color: #EEEEEE;
+  background-color: white;
 }
 
 /* header */
@@ -54,6 +54,18 @@ body {
   color: black;
 }
 
+/* footer */
+footer {
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  p {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+    margin-bottom: 0;
+  }
+}
 
 
 /*
