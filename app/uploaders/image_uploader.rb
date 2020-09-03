@@ -3,10 +3,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   
-  process resize_to_fill: [1200, 900, 'Center']
+  process resize_to_fill: [1000, 750, 'Center']
 
   version :thumb do
     process resize_to_fill: [600, 600, 'center']
+  end
+
+  version :head do
+    process resize_to_fill: [1600, 600, 'center']
   end
 
   # ファイルサイズを制限

@@ -134,12 +134,7 @@ class User < ApplicationRecord
 
   # 金賞をすでに保存しているか確認する
   def saved_gold?
-    self.gold_prizes.exists?(user_id: self.id)
-  end
-
-  # 表示している投稿が金賞として保存されているか確認する
-  def saved_this_gold?(contest_post)
-    self.gold_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
+    self.contest_posts.gold_prize.exists?(user_id: self.id)
   end
 
   # 銀賞をすでに保存しているか確認する
@@ -147,19 +142,9 @@ class User < ApplicationRecord
     self.silver_prizes.exists?(user_id: self.id)
   end
 
-  # 表示している投稿が銀賞として保存されているか確認する
-  def saved_this_silver?(contest_post)
-    self.silver_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
-  end
-
   # 入賞をすでに保存しているか確認する
   def saved_win?
     self.win_a_prizes.exists?(user_id: self.id)
-  end
-
-  # 表示している投稿が入賞として保存されているか確認する
-  def saved_this_win?(contest_post)
-    self.win_a_prizes.exists?(user_id: self.id, contest_post_id: contest_post.id)
   end
 
   # ユーザーのフィードを返す

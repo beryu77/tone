@@ -1,22 +1,23 @@
-<div class="row">
-  <div class="col-md-8 mx-auto">
+<div class="container pt-4">
   <h2 class="text-center mt-4 mb-3">コンテスト一覧</h2>
-    <div class="post-cards">
-      <% @contests.each do |contest| %>
-        <div class="card-index">
-          <div class="card bg-transparent">
-            <div class="card-header">
-              <div class="contest-title">
-                <%= contest.title %>
-              </div>
+  <div class="row post-cards">
+    <% @contests.each do |contest| %>
+      <div class="col-lg-6 col-md-12 card-index">
+        <div class="card bg-white">
+          <div class="card-header contest-header">
+            <div class="contest-title text-center">
+              <%= contest.title %>
             </div>
-            <img class="card-img-top">
-              <%= link_to image_tag(contest.image.url.to_s, class: "contest_image img-fluid", alt: "contest image"), contest %>
-            </img>
+          </div>
+          <img class="card-img-top">
+            <%= link_to image_tag(contest.image.url.to_s, class: "contest_image img-fluid", alt: "contest image"), contest %>
+          </img>
+          <div class="card-footer text-right contest-footer">
+            <span><small><%= "開催期間" %></small></span>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 <%= paginate @contests %> 

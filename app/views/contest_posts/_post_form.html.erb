@@ -12,9 +12,14 @@
 
     <div class="col-md-6 col-right">
       <div class="">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: "form-control", rows: 2, placeholder: "写真のタイトル" %> 
+      </div>
+
+      <div class="">
         <%= f.label :location, '撮影場所' %>
         <%= f.text_field :location, class: "form-control", rows: 2, placeholder: "場所、地名、住所" %> 
-     </div>
+      </div>
 
       <div class="">
         <%= f.label :equipment, '機材' %>
@@ -28,9 +33,9 @@
     </div>
 
     <div class="row d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
-      <%= f.submit "写真を登録する", class: "btn btn-primary form-control" %>
+      <%= f.submit "写真をコンテストに応募する", class: "btn btn-primary form-control" %>
     </div>
-  </div>
+  </div> 
 <% end %>
 
 <script type="text/javascript">

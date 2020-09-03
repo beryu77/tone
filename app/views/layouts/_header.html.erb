@@ -9,37 +9,37 @@
     <ul class="navbar-nav mr-auto">
       <% if logged_in? && current_user.admin? %>
         <li class="nav-item">
-          <%= link_to "ユーザー一覧", users_path, class: "nav-link" %>
+          <%= link_to "ユーザー一覧", users_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
-          <%= link_to "コンテスト作成", new_contest_path, class: "nav-link" %>
+          <%= link_to "コンテスト作成", new_contest_path, class: "nav-link active" %>
         </li>
       <% end %>
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to timeline_posts_path, class: "nav-link" do %>
+          <%= link_to timeline_posts_path, class: "nav-link active" do %>
             <i class="fas fa-stream"></i><%= " タイムライン" %>
           <% end %>
         </li>
       <% end %>
       <li class="nav-item">
-        <%= link_to popular_posts_path, class: "nav-link" do %>
+        <%= link_to popular_posts_path, class: "nav-link active" do %>
           <i class="fas fa-fire-alt"></i><%= " 人気" %>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to posts_path, class: "nav-link" do %>
+        <%= link_to posts_path, class: "nav-link active" do %>
           <i class="fas fa-seedling"></i><%= " 新着" %>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to feature_posts_path, class: "nav-link" do %>
-          <i class="fas fa-heart"></i><%= " 注目の写真" %>
+        <%= link_to feature_posts_path, class: "nav-link active" do %>
+          <i class="far fa-star"></i><%= " 注目の写真" %>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to contests_path, class: "nav-link" do %>
-          <i class="fas fa-heart"></i><%= " コンテスト" %>
+        <%= link_to contests_path, class: "nav-link active" do %>
+          <i class="fas fa-medal"></i><%= " コンテスト" %>
         <% end %>
       </li>
     </ul>
@@ -47,10 +47,10 @@
     <ul class="navbar-nav">
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
+          <%= link_to "新規投稿", new_post_path, class: "nav-link active" %>
         </li>
         <li class="nav-item dropdown">
-          <%= link_to "メニュー", "#", class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
+          <%= link_to "メニュー", "#", class: "nav-link active dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "マイページ", current_user, class: "dropdown-item" %>
             <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
@@ -58,10 +58,10 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "新規登録", signup_path, class: "nav-link" %>
+          <%= link_to "新規登録", signup_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログイン", login_path, class: "nav-link" %>
+          <%= link_to "ログイン", login_path, class: "nav-link active" %>
         </li>
       <% end %>
     </ul>
