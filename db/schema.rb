@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_093003) do
+ActiveRecord::Schema.define(version: 2020_09_03_143826) do
 
   create_table "best_photos", force: :cascade do |t|
     t.integer "post_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_093003) do
     t.string "silver_explanation"
     t.string "win_title"
     t.string "win_explanation"
+    t.string "period"
   end
 
   create_table "favorites", force: :cascade do |t|

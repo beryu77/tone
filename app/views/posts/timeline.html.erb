@@ -1,5 +1,5 @@
 <% provide :title, "タイムライン" %>
 
 <div class="container pt-4">
-  <%= render "posts/index_timeline", posts: @timeline_posts %>
+  <%= render "posts/index_timeline", { posts: @timeline_posts, user: @user } %>
 </div>

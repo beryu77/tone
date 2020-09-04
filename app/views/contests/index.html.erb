@@ -13,7 +13,7 @@
             <%= link_to image_tag(contest.image.url.to_s, class: "contest_image img-fluid", alt: "contest image"), contest %>
           </img>
           <div class="card-footer text-right contest-footer">
-            <span><small><%= "開催期間" %></small></span>
+            <span>応募期間：<%= contest.period %></span>
           </div>
         </div>
       </div>

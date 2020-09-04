@@ -3,7 +3,7 @@
 <div class="container pt-4">
   <% if logged_in? %>
     <% if !@timeline_posts.nil? %>
-      <%= render "posts/index_timeline", posts: @timeline_posts %>
+      <%= render "posts/index_timeline", { posts: @timeline_posts, user: @user } %>
     <% else %>
       <div class="no-contents d-flex flex-column align-items-center justify-content-center mx-auto">
         <div class="no-contents-title font-weight-bold">投稿がありません</div>
