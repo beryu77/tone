@@ -1,28 +1,63 @@
 <div class="row post-cards">
-  <% posts.each do |post| %>
-    <div class="col-md-10 mx-auto card-index">
-      <div class="card bg-white">
-        <div class="card-header">
-          <div class="post-user">
-            <% if post.user.avatar? %>
-              <%= link_to image_tag(post.user.avatar.to_s, size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
-            <% else %>
-              <%= link_to image_tag("no-avatar.png", size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
-            <% end %>
-            <%= link_to post.user.name, post.user, class: "post-user-name" %>
+  <div class="col-md-8">
+    <% posts.each do |post| %>
+        <div class="card card-index bg-white">
+          <div class="card-header">
+            <div class="post-user">
+              <% if post.user.avatar? %>
+                <%= link_to image_tag(post.user.avatar.to_s, size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
+              <% else %>
+                <%= link_to image_tag("no-avatar.png", size: '50x50', class: "user_avatar rounded-circle", alt: "avatar image"), post.user, class: "mr-2" %>
+              <% end %>
+              <%= link_to post.user.name, post.user, class: "post-user-name" %>
+            </div>
+            <div class="post-info">
+              <small><%= time_ago_in_words(post.created_at) %>前</small>
+            </div>
+          </div>    
+          <%= link_to image_tag(post.image.to_s, class: "post_image img-fluid", alt: "post image"), post %>
+          
+          <div class="card-footer text-right">
+            <span><small><%= "いいね！#{post.likes.count}件" %></small></span>
+            <span><small><%= "コメント#{post.comments.count}件" %></small></span>
           </div>
-          <div class="post-info">
-            <small><%= time_ago_in_words(post.created_at) %>前</small>
-          </div>
-        </div>    
-        <%= link_to image_tag(post.image.to_s, class: "post_image img-fluid", alt: "post image"), post %>
-        
-        <div class="card-footer text-right">
-          <span><small><%= "いいね！#{post.likes.count}件" %></small></span>
-          <span><small><%= "コメント#{post.comments.count}件" %></small></span>
         </div>
+      
+    <% end %>
+   
+  </div>
+  <div class="col-md-4">
+    <div class="card bg-white border-white">
+      <div class="user-avator mx-auto">
+        <% if user.avatar? %>
+          <%= link_to image_tag(user.avatar.url, size: '150x150', class: 'rounded-circle img-fluid avatar-image pt-3', alt: 'avatar image'), user %>
+        <% else %>
+          <%= link_to image_tag("no-avatar.png", size: "150x150", class: "rounded-circle img-fluid avatar-image pt-3", alt: "avatar image"), user %>
+        <% end %> 
+        <div class="font-weight-bold text-center">
+          <%= user.name %>
+        </div>   
       </div>
+      <div class="user-status text-center mt-3">
+        <div class="status-value"><%= "投稿#{user.posts.count.to_s(:delimited)}件" %></div>
+        <span class="status-value mr-1"><%= "フォロワー#{user.followers.count.to_s(:delimited)}人" %></span>
+        <span class="status-value ml-1"><%= "フォロー#{user.following.count.to_s(:delimited)}人" %></span>
+      </div>
+      <div class="mx-auto">
+        <p class="text-center mt-5">おすすめのユーザー</p>
+        <div class="">
+          <% @users.each do |user| %>
+            <div class="pb-3">
+              <% if user.avatar? %>
+                <%= link_to image_tag(user.avatar.to_s, size: "70x70", class: "rounded-circle mr-1", alt: "avatar image"), user %>
+              <% else %>
+                <%= link_to image_tag("no-avatar.png", size: "70x70", class: "rounded-circle mr-1", alt: "avatar image"), user %>
+              <% end %>
+              <%= link_to user.name, user, class: 'user-name' %>
+            </div>
+          <% end %>
+        </div>
     </div>
-  <% end %>
+  </div>
 </div>
 <%= paginate posts %>

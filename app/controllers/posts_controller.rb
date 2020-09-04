@@ -7,6 +7,8 @@ class PostsController < ApplicationController
   end
 
   def timeline
+    @user = User.find_by(id: current_user.id)
+    @users = User.order(id: :ASC).page(params[:page]) .per(6)
     @timeline_posts = current_user.timeline.page(params[:page])
   end
 

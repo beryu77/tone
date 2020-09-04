@@ -14,6 +14,9 @@
         <%= f.label :condition, "応募要項" %>
         <%= f.text_area :condition, class: "form-control", rows: 12 %>
 
+        <%= f.label :period, "応募期間" %>
+        <%= f.text_field :period, class: "form-control" %>
+
         <%= f.label :image, "コンテストページの写真をアップロードしてください" %>
         <%= f.file_field :image, accept: "image/jpg,image/jpeg,image/gif,image/png", class: "image" %>
 

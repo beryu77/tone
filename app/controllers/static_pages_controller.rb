@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
+      @user = User.find_by(id: current_user.id)
       @timeline_posts = current_user.timeline.page(params[:page])
       @timeline_posts = @timeline_posts.includes(:user)
       @posts = Post.page(params[:page])

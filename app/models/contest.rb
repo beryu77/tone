@@ -9,6 +9,7 @@
 #  gold_title         :string
 #  image              :string
 #  main               :text
+#  period             :string
 #  silver_explanation :string
 #  silver_prize       :string
 #  silver_title       :string
