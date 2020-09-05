@@ -12,10 +12,6 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page])
     @followings = @user.following
     @followers = @user.followers
-    if @user.best_photos.exists?(user_id: @user.id)
-      @best_photo = BestPhoto.find_by(user_id: @user.id)
-      @post = Post.find(@best_photo.post_id)
-    end
   end
   
   def new

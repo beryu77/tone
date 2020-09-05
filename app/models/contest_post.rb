@@ -2,12 +2,12 @@
 #
 # Table name: contest_posts
 #
-#  id         :integer          not null, primary key
-#  caption    :text
-#  equipment  :string
-#  image      :string
-#  location   :string
-#  title      :string
+#  id         :bigint           not null, primary key
+#  caption    :text(65535)
+#  equipment  :string(255)
+#  image      :string(255)
+#  location   :string(255)
+#  title      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer

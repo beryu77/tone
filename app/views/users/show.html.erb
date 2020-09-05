@@ -13,9 +13,7 @@
     </div>
     <div class="d-flex flex-column mt-3 col-md-7">
       <div class="user-name">
-        <div class="font-weight-bold">
-          <%= @user.name %>
-        </div>
+        <%= @user.name %>
       </div>
       <div class="user-menu mt-3">
         <% if logged_in? %>
@@ -38,8 +36,8 @@
           <% end %>
           <div class="user-status mt-3">
             <span class="status-value mr-4"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
-            <span class="status-value mr-4"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path %></span>
-            <span class="status-value"><%= link_to "フォロー#{@user.following.count.to_s(:delimited)}人", following_user_path %></span>
+            <span class="status-value mr-4"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path, class:"status-name" %></span>
+            <span class="status-value"><%= link_to "フォロー#{@user.following.count.to_s(:delimited)}人", following_user_path, class:"status-name" %></span>
           </div>
           <div class="user-profile mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">
             <%= simple_format(@user.profile) %>
