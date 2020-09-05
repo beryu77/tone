@@ -12,27 +12,27 @@
 
 ActiveRecord::Schema.define(version: 2020_09_03_143826) do
 
-  create_table "best_photos", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "user_id"
+  create_table "best_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_best_photos_on_post_id"
     t.index ["user_id"], name: "index_best_photos_on_user_id"
   end
 
-  create_table "comment_likes", force: :cascade do |t|
-    t.integer "comment_id"
-    t.integer "user_id"
+  create_table "comment_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "comment_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comment_likes_on_comment_id"
     t.index ["user_id"], name: "index_comment_likes_on_user_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "user_id"
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "comment"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_143826) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "contest_posts", force: :cascade do |t|
+  create_table "contest_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "caption"
     t.string "equipment"
     t.string "image"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_143826) do
     t.string "title"
   end
 
-  create_table "contests", force: :cascade do |t|
+  create_table "contests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "image"
     t.datetime "created_at", null: false
@@ -71,44 +71,37 @@ ActiveRecord::Schema.define(version: 2020_09_03_143826) do
     t.string "period"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "user_id"
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "gold_prizes", force: :cascade do |t|
-    t.integer "contest_post_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "user_id"
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "caption"
     t.string "location"
     t.string "equipment"
     t.string "image"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -118,14 +111,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_143826) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "silver_prizes", force: :cascade do |t|
-    t.integer "contest_post_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
@@ -138,11 +124,15 @@ ActiveRecord::Schema.define(version: 2020_09_03_143826) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "win_a_prizes", force: :cascade do |t|
-    t.integer "contest_post_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "best_photos", "posts"
+  add_foreign_key "best_photos", "users"
+  add_foreign_key "comment_likes", "comments"
+  add_foreign_key "comment_likes", "users"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
+  add_foreign_key "posts", "users"
 end

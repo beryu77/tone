@@ -2,14 +2,14 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
+#  id              :bigint           not null, primary key
 #  admin           :boolean          default(FALSE)
-#  avatar          :string
-#  email           :string
-#  name            :string
-#  password_digest :string
-#  profile         :text
-#  remember_digest :string
+#  avatar          :string(255)
+#  email           :string(255)
+#  name            :string(255)
+#  password_digest :string(255)
+#  profile         :text(65535)
+#  remember_digest :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -115,11 +115,6 @@ class User < ApplicationRecord
   # お気に入りの投稿として保存しているか確認する
   def already_made_favorite?(post)
     self.favorites.exists?(post_id: post.id)
-  end
-
-  # ベストフォトをすでに保存しているか確認する（ユーザーはベストフォトを１枚だけ保存できる）
-  def already_saved_best?
-    self.best_photos.exists?(user_id: self.id)
   end
 
   # 表示している投稿がベストフォトとして保存されているか確認する
