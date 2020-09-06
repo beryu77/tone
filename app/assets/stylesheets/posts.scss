@@ -53,8 +53,10 @@
   }
 }
 
+// 投稿フォームとプレビュー
+
 .add_image {
-  border: black 4px dashed;
+  border: solid 4px black;
   width: 100%;
   margin-top: 10px;
   height: 380px;
@@ -70,7 +72,7 @@
     font-size: 120px;
   }
   p {
-    font-size: 12px;
+    font-size: 22px;
   }
 }
 
@@ -87,7 +89,7 @@
   box-sizing: border-box;
   transition: 0.3s ease-out;
   &:hover {
-    background-color: #EDBC6C;
+    background-color: #888888;
     & i{
       color: #fff;
     }

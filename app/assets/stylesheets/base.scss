@@ -37,7 +37,6 @@ body {
   margin: 0;
   display: flex;
   flex-flow: column;
-  flex-wrap: wrap;
   min-height: 100vh;
   background-color: white;
 }
@@ -55,6 +54,7 @@ body {
 
 /* footer */
 footer {
+  margin-top: auto;
   width: 100%;
   background-color: black;
   color: white;

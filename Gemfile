@@ -55,6 +55,7 @@ group :development do
 
   # ----- 以下追記 -----
   gem 'annotate'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
