@@ -1,10 +1,11 @@
 <% provide :title, "投稿" %>
 
-<div class="container pt-2 pb-3">
+<div class="container pt-2 mt-4 mb-5">
   <div class="row">
     <div class="col-md-10 mx-auto">
       <%= render "post_data" %>
-      <div class="float-right">
+
+      <div class="float-right mt-1">
         <span id="like_btn_<%= @post.id %>">
           <%= render "likes/like_button", post: @post %> 
         </span>
@@ -18,13 +19,23 @@
         </span>
       </div>
 
-      <div>
+      <div class="post-data mt-3">
+        <div class="location">
+          【撮影地】：<%= @post.location %>
+        </div>
+        <div class="equipment mt-2">
+          【カメラ・レンズ等】：<%= @post.equipment %>
+        </div>
+        <div class="caption mt-3">
+          <%= @post.caption %>
+        </div>
+      </div>
+
+      <div class="comment-area mb-5">
         <% if logged_in? %>
           <%= render "comments/form" %>
         <% end %>
-      </div>
       
-      <div class="comment-list">
         <p class="comment-title border-bottom border-dark mt-3">コメント一覧<span class="float-right">コメント<%= @post.comments.count %>件</span></p>
         <div class="comment-data mt-4">
           <% @comments.each do |comment| %>

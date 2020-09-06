@@ -1,9 +1,9 @@
 <% provide(:title, "ユーザー情報の編集") %>
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3 mx-auto">
   <%= render 'shared/error_messages' %>
 
-  <h2 class="form_title">プロフィールの編集</h2>
+  <h2 class="form_title mt-3 mb-4">プロフィールの編集</h2>
 
   <%= form_with model: @user, local: true do |f| %>
     <div class="text-center mb-3"> 
@@ -30,8 +30,8 @@
     <%= f.text_area :profile, class: 'form-control', rows: 5 %>
     
     <div class="text-right">
-      <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-outline-dark" %>
-      <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+      <%= link_to '戻る', user_path(current_user), class: "btn btn-outline-dark mb-2" %>
+      <%= f.submit "変更を保存する", class: "btn btn-dark mb-5" %>
     </div>
   <% end %>
 </div>

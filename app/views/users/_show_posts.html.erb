@@ -4,14 +4,14 @@
       <div class="card PhotoBox">
         <%= link_to image_tag(post.image.thumb.url.to_s, class: 'post_image_index img-fluid', alt: 'post image'), post %>
         <div class="SlideBox">
-          <span><%= post.likes.count %></span>
-          <span><%= post.comments.count %></span>
+          <span class="mr-2">いいね<%= post.likes.count %></span>
+          <span>コメント<%= post.comments.count %></span>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
+s
 <script type="text/javascript">
   $(document).on("turbolinks:load", function() {
     $(".PhotoBox").hover(function(){
