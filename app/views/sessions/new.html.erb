@@ -2,13 +2,15 @@
 
 <div class="container user-form">
   <h2 class="mt-3 pb-3">ログイン</h2>
+
     <%= form_with scope: :session, url: login_path, local: true do |f| %>
-      
+      <%= render "shared/error" %>
+
       <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: "form-control" %>
 
       <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: 'form-controll' %>
+      <%= f.password_field :password, class: "form-controll" %>
 
       <%= f.label :remember_me, class: "checkbox inline" do %>
         <%= f.check_box :remember_me %>

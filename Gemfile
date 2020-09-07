@@ -78,3 +78,4 @@ gem 'jquery-rails'
 gem 'carrierwave'
 gem "mini_magick", ">= 4.9.4"
 gem 'faker', '>= 1.7.3'   #後で削除
+gem 'rails-i18n'

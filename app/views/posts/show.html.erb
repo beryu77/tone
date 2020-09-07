@@ -13,9 +13,11 @@
           <%= render "favorites/favorite_button", post: @post %>
         </span>
         <span>
+        <% if logged_in? %>
           <% if current_user.admin? %>
             <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark' %>
           <% end %>
+        <% end %>
         </span>
       </div>
 

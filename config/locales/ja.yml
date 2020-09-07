@@ -1,4 +1,24 @@
 ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        avatar: アバター
+        profile: 自己紹介
+      post:
+        caption: キャプション
+        image: 画像
+        weather: 天気
+        feeling: 体感
+        expectation: 予想
+        prefecture: 都道府県
+        city: 市区町村
+      comment:
+        comment: コメント
+        
   datetime:
     distance_in_words:
       half_a_minute: "30秒前後"
@@ -35,4 +55,4 @@ ja:
       over_x_years:
         one:   "1年以上"
         other: "%{count}年以上"
-    
+  

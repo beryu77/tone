@@ -11,17 +11,26 @@
   margin: 20px 0;
 }
 
-.card-header {
-  height: 73px;
+.header-big {
+  height: 70px;
+}
+
+.header-mini {
+  height: 58px;
 }
 
 .card-footer {
-  height: 50px;
+  height: 32px;
+  line-height: 1px;
+}
+
+.post-data {
+  padding-top: 5px;
 }
 
 .post-user {
   float: left;
-  line-height: 48px;
+  line-height: 30px;
 }
 
 .post-user-name {
@@ -30,7 +39,7 @@
 
 .post-info {
   text-align: right;
-  padding-top: 30px;
+  padding-top: 16px;
 }
 
 .post-image {
