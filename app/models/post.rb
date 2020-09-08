@@ -39,9 +39,6 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
 
-  has_many :best_photos, dependent: :destroy
-  has_many :best_photo, through: :best_photos, source: :user
-
   # お気に入りされているか判定
   def liked_by?(user)
     likes.where(user_id: user.id).exists?

@@ -16,7 +16,7 @@
             <% end %>
             <%= link_to user.name, user, class: 'user-name' %>
 
-            <% if current_user.admin? %>
+            <% if current_user.admin? && !(user.admin?) %>
               <%= link_to 'このユーザーを削除する', user, method: :delete, data: { confirm: 'このユーザーを削除しますか？' }, class:'btn btn-dark' %>
             <% end %>
           </div>
