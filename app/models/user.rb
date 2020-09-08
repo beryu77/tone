@@ -45,13 +45,6 @@ class User < ApplicationRecord
   has_many :contests, dependent: :destroy
   has_many :contest_posts
 
-  has_many :best_photos, dependent: :destroy
-  has_many :best_photo, through: :best_photos, source: :post
-
-  has_many :gold_prizes, dependent: :destroy
-  has_many :silver_prizes, dependent: :destroy
-  has_many :win_a_prizes, dependent: :destroy
-
   # 仮想の属性（トークンをデータベースに保存せずに実装するため）
   attr_accessor :remember_token
 
