@@ -35,9 +35,19 @@
             <% end %>
           <% end %>
           <div class="user-status mt-3">
-            <span class="status-value mr-4"><%= "投稿#{@user.posts.count.to_s(:delimited)}件" %></span>
-            <span class="status-value mr-4"><%= link_to "フォロワー#{@user.followers.count.to_s(:delimited)}人", followers_user_path, class:"status-name" %></span>
-            <span class="status-value"><%= link_to "フォロー#{@user.following.count.to_s(:delimited)}人", following_user_path, class:"status-name" %></span>
+            <span class="status-name">投稿</span>
+            <span class="status-value mr-4"><%= @user.posts.count.to_s(:delimited) %></span>
+
+            <span class="status-name">フォロワー</span>
+            <span class="status-value mr-4" id="followers_<%= @user.id %>">
+              <%= @user.followers.count.to_s(:delimited) %>
+            </span>
+
+            <span class="status-name">フォロー</span>
+            <span class="status-value" id="following_<%= @user.id %>">
+              <%= @user.following.count.to_s(:delimited) %>
+            </span>
+
           </div>
           <div class="user-profile mt-3" style="max-width: 400px; max-height: 140px; overflow: hidden;">
             <%= simple_format(@user.profile) %>
@@ -52,7 +62,6 @@
       <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">
         <div class="user-status">
           <span class="status-name">投稿</span>
-          <span class="status-value"><%= @user.posts.count.to_s(:delimited) %></span>
         </div>
       </a>
     </li>
@@ -60,9 +69,6 @@
       <a class="nav-link" id="followings-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロー</span>
-          <span class="status-value" id="followings_<%= @user.id %>">
-            <%= @user.following.count.to_s(:delimited) %>
-          </span>
         </div>
       </a>
     </li>
@@ -70,9 +76,6 @@
       <a class="nav-link" id="followers-tab" data-toggle="tab" href="#item3" role="tab" aria-controls="item3" aria-selected="true">
         <div class="user-status">
           <span class="status-name">フォロワー</span>
-          <span class="status-value" id="followers_<%= @user.id %>">
-            <%= @user.followers.count.to_s(:delimited) %>
-          </span>
         </div>
       </a>
     </li>
@@ -80,7 +83,6 @@
       <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
           <span class="status-name">お気に入り</span>
-          <span class="status-value"><%= @user.favorites.count.to_s(:delimited) %></span>
         </div>
       </a>
     </li>

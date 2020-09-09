@@ -1,1 +1,3 @@
 $("#follow_form").html("<%= j(render("users/follow")) %>");
+$("#following_<%= current_user.id %>").html('<%= current_user.following.count.to_s(:delimited) %>');
+$("#followers_<%= @user.id %>").html('<%= @user.followers.count.to_s(:delimited) %>');

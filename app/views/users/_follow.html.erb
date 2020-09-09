@@ -1,5 +1,5 @@
 <%= form_for(current_user, url: relationships_path,
              method: :post, remote: true) do |f| %>
-  <%= hidden_field_tag :followed_id, @user.id %>
+  <%= hidden_field_tag :user_id, @user.id %>
   <%= f.submit "フォロー", class: "btn btn-secondary btn-follow" %>
 <% end %>
