@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Login', type: :system do
+RSpec.describe 'ログイン', type: :system do
 
   describe '通常ユーザー' do
     before do

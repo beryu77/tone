@@ -1,8 +1,8 @@
 <div class="mb-2 float-right">
   <% if logged_in? %>
     <% if current_user?(@post.user) %>
-      <%= link_to "編集", edit_post_path(@post), data: { confirm: "編集しますか?" }, class:'btn btn-outline-dark'%>
-      <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>
+      <%= link_to "編集", edit_post_path(@post), class:'btn btn-outline-dark'%>
+      <%= link_to "削除", @post, method: :delete, class:'btn btn-outline-dark'%>
       <% if current_user.admin? %>
         <%= link_to "削除", @post, method: :delete, data: { confirm: "削除しますか?" }, class:'btn btn-outline-dark'%>
       <% end %>
