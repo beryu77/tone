@@ -29,11 +29,9 @@ Rails.application.routes.draw do
       get :feature
     end
   end
-
-  resources :comments, only: [:create, :destroy] do
-    resource :comment_likes, only: [:create, :destroy]
-  end
   
+  resource :comment_likes, only: [:create, :destroy]
+
   resources :contests
   resources :contest_posts, only: [:new, :create, :index, :show]
   

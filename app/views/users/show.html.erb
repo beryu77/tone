@@ -7,7 +7,7 @@
         <% if @user.avatar? %>
           <%= image_tag(@user.avatar.url, size: '180x180', class: 'rounded-circle img-fluid avatar-image', alt: 'avatar image') %>
         <% else %>
-          <%= image_tag("no-avatar.png", size: "180x180", class: "rounded-circle img-fluid avatar-image", alt: "avatar image") %>
+          <%= image_tag('no-avatar.png', size: '180x180', class: 'rounded-circle img-fluid avatar-image', alt: 'avatar image') %>
         <% end %>    
       </div>
     </div>
