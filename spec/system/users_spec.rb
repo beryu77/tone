@@ -23,7 +23,7 @@ RSpec.describe 'ユーザー', type: :system do
     expect(current_path).to eq edit_user_path(@user)
     expect(page).to have_content 'ユーザー名（20文字以内）'
     expect(page).to have_content 'メールアドレス'
-    expect(page).to have_content '自己紹介'
+    expect(page).to have_content '自己紹介（150文字以内）'
 
     attach_file 'user[avatar]', "#{Rails.root}/spec/fixtures/test_avatar.png", make_visible: true
     fill_in 'ユーザー名（20文字以内）', with: 'goro'
