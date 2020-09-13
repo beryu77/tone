@@ -1,14 +1,17 @@
 FROM ruby:2.6.5
-RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y postgresql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-WORKDIR /myproject
+RUN apt-get update && \
+    apt-get install -y mariadb-client nodejs vim --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
-ADD Gemfile /myproject/Gemfile
-ADD Gemfile.lock /myproject/Gemfile.lock
+RUN mkdir /tone
+
+WORKDIR /tone
+
+ADD Gemfile /tone/Gemfile
+ADD Gemfile.lock /tone/Gemfile.lock
 
 RUN gem install bundler
 RUN bundle install
 
-ADD . /myproject
+ADD . /tone
