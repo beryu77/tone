@@ -56,6 +56,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+  validates :profile, length: { maximum: 150 }
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -118,21 +119,6 @@ class User < ApplicationRecord
   # コメントにいいねしているか確認する
   def comment_liked?(comment)
     self.comment_likes.exists?(comment_id: comment.id)
-  end
-
-  # 金賞をすでに保存しているか確認する
-  def saved_gold?
-    self.contest_posts.gold_prize.exists?(user_id: self.id)
-  end
-
-  # 銀賞をすでに保存しているか確認する
-  def saved_silver?
-    self.silver_prizes.exists?(user_id: self.id)
-  end
-
-  # 入賞をすでに保存しているか確認する
-  def saved_win?
-    self.win_a_prizes.exists?(user_id: self.id)
   end
 
   # ユーザーのフィードを返す
