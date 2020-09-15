@@ -1,17 +1,24 @@
+
+# コピペでOK, app_nameもそのままでOK
+# 19.01.20現在最新安定版のイメージを取得
 FROM ruby:2.6.5
 
-RUN apt-get update && \
-    apt-get install -y mariadb-client nodejs vim --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+# 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
+RUN apt-get update -qq && \
+    apt-get install -y build-essential \ 
+                       libpq-dev \        
+                       nodejs           
 
-RUN mkdir /tone
+# 作業ディレクトリの作成、設定
+RUN mkdir /app_name 
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /app_name 
+WORKDIR $APP_ROOT
 
-WORKDIR /tone
+# ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
+ADD ./Gemfile $APP_ROOT/Gemfile
+ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-ADD Gemfile /tone/Gemfile
-ADD Gemfile.lock /tone/Gemfile.lock
-
-RUN gem install bundler
+# Gemfileのbundle install
 RUN bundle install
-
-ADD . /tone
+ADD . $APP_ROOT
