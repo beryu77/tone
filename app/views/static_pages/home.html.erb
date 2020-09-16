@@ -1,7 +1,7 @@
 <% provide(:title, "TONE") %>
 
-<div class="container pt-4">
-  <% if logged_in? %>
+<% if logged_in? %>
+  <div class="container pt-4">
     <% if !@timeline_posts.nil? %>
       <%= render "posts/index_timeline", { posts: @timeline_posts, user: @user } %>
     <% else %>
@@ -10,12 +10,24 @@
         <%= render "posts/index_posts", posts: @posts %>
       </div>
     <% end %>
-
-  <% else %>
-    <div class="no-contents d-flex flex-column align-items-center justify-content-center mx-auto">
-      <div class="no-contents-title font-weight-bold">ログインしてください</div>
-      <%= render "posts/index_posts", posts: @posts %>
+  </div>
+<% else %>
+  <div class="about-image d-flex flex-column align-items-center justify-content-center mx-auto">
+    <div class="title-box">
+      <p class="apptitle pt-4">Tone</p>
+      <p class="title-message">モノクロで自由に</p>
     </div>
-  <% end %>
-</div>
+  </div>
+  <div class="explanation">
+    <h4 class="font-weight-bold">あなたが目にしたものをモノクロで表現してみてください</h4>
+    <p class="pt-4">街で見つけた面白い光景</p>
+    <p class="pt-3">家族や友人と過ごすひと時など</p>
+    <p class="pt-3">それらはモノクロにすることで、また違った特別なものになるかもしれません</p>
+  </div>
+  <div class="sample-image d-flex flex-column align-items-center justify-content-center mx-auto">
+    
+  </div>
+<% end %>
 
+
+<%= render "posts/index_posts", posts: @posts %>

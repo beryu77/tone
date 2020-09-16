@@ -25,9 +25,7 @@ class ContestPost < ApplicationRecord
   private
 
   # アップロードされた画像のサイズをバリデーションする
-  def image_size 
-    if image.size > 15.megabytes
-        errors.add(:image, "15MBまでの画像を投稿してください")
-    end
+  def image_size
+    errors.add(:image, '15MBまでの画像を投稿してください') if image.size > 15.megabytes
   end
 end

@@ -15,13 +15,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :relationships, only: [:create, :destroy]
-  resources :best_photos, only: [:create, :destroy]
+  resources :relationships, only: %i[create destroy]
+  resources :best_photos, only: %i[create destroy]
 
   resources :posts do
-    resource :likes, only: [:create, :destroy]
-    resource :comments, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    resource :likes, only: %i[create destroy]
+    resource :comments, only: %i[create destroy]
+    resource :favorites, only: %i[create destroy]
     collection do
       get :timeline
       get :popular
@@ -29,14 +29,13 @@ Rails.application.routes.draw do
       get :feature
     end
   end
-  
-  resource :comment_likes, only: [:create, :destroy]
+
+  resource :comment_likes, only: %i[create destroy]
 
   resources :contests
-  resources :contest_posts, only: [:new, :create, :index, :show]
-  
-  resources :gold_prizes, only: [:create, :destroy]
-  resources :silver_prizes, only: [:create, :destroy]
-  resources :win_a_prizes, only: [:create, :destroy]
+  resources :contest_posts, only: %i[new create index show]
+
+  resources :gold_prizes, only: %i[create destroy]
+  resources :silver_prizes, only: %i[create destroy]
+  resources :win_a_prizes, only: %i[create destroy]
 end
- 

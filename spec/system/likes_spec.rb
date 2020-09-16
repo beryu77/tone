@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'いいね', type: :system do
   before do
-    @taro = FactoryBot.create(:user, 
+    @taro = FactoryBot.create(:user,
                               name: 'taro',
                               email: 'taro@example.com',
                               password: 'password_taro')
 
-    @jiro = FactoryBot.create(:user, 
+    @jiro = FactoryBot.create(:user,
                               name: 'jiro',
                               email: 'jior@example.com',
                               password: 'password_jiro')
@@ -18,7 +18,7 @@ RSpec.describe 'いいね', type: :system do
     visit root_path
 
     # taroがログインする
-    find(".navbar-toggler-icon").click
+    find('.navbar-toggler-icon').click
     click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
@@ -29,7 +29,7 @@ RSpec.describe 'いいね', type: :system do
     expect(page).to have_content 'taro'
 
     # jiroの既存の投稿に移動する
-    find(".navbar-toggler-icon").click
+    find('.navbar-toggler-icon').click
     click_link '新着'
     post = @jiro.posts.first
     expect(page).to have_link 'a', href: "/posts/#{post.id}"

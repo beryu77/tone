@@ -104,11 +104,11 @@ RSpec.describe 'ユーザー', type: :model do
       expect(user2).to_not be_valid
     end
 
-    #it 'メールアドレスは大文字小文字を区別せず扱うこと' do
-      #FactoryBot.create(:user, email: 'sample@example.com')
-      #duplicate_user = FactoryBot.build(:user, email: 'SAMPLE@EXAMPLE.COM')
-      #duplicate_user.valid?
-      #expect(duplicate_user.errors).to be_added(:email, :taken, value: 'sample@example.com')
-    #end
+    # it 'メールアドレスは大文字小文字を区別せず扱うこと' do
+    # FactoryBot.create(:user, email: 'sample@example.com')
+    # duplicate_user = FactoryBot.build(:user, email: 'SAMPLE@EXAMPLE.COM')
+    # duplicate_user.valid?
+    # expect(duplicate_user.errors).to be_added(:email, :taken, value: 'sample@example.com')
+    # end
   end
 end
