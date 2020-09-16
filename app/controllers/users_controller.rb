@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user, only: %i[index destroy]
 
   def index
-    @users = User.order(admin: :DESC, id: :ASC).page(params[:page]) 
+    @users = User.order(admin: :DESC, id: :ASC).page(params[:page])
   end
 
   def show
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @followings = @user.following
     @followers = @user.followers
   end
-  
+
   def new
     @user = User.new
   end
@@ -29,14 +29,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit 
+  def edit
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_update_params)
-      flash[:success] = "プロフィールの編集が完了しました"
+      flash[:success] = 'プロフィールの編集が完了しました'
       redirect_to @user
     else
       render 'edit'
@@ -45,19 +45,19 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "ユーザーを削除しました"
+    flash[:success] = 'ユーザーを削除しました'
     redirect_to users_url
   end
 
   def following
-    @title = "Following"
+    @title = 'Following'
     @user  = User.find(params[:id])
     @users = @user.following.page(params[:page])
     render 'show_follow'
   end
 
   def followers
-    @title = "Followers"
+    @title = 'Followers'
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
@@ -70,23 +70,23 @@ class UsersController < ApplicationController
 
   private
 
-    # ストロングパラメータ
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
+  # ストロングパラメータ
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
-    def user_update_params
-      params.require(:user).permit(:name, :email, :avatar, :profile)
-    end
+  def user_update_params
+    params.require(:user).permit(:name, :email, :avatar, :profile)
+  end
 
-    # 正しいユーザーかどうか確認
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  # 正しいユーザーかどうか確認
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
 
-    # 管理者かどうかを確認 
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
- end
+  # 管理者かどうかを確認
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+end

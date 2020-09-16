@@ -1,3 +1,46 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.apptitle {
+  font-size: 90px;
+  text-align: center;
+  color: white;
+  font-family: Times New Roman;
+}
+
+.title-message{
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  font-family: Times New Roman;
+  letter-spacing: 5px;
+}
+
+.title-box {
+  min-width: 600px;
+  min-height: 250px;
+  background-color: rgba($color: black, $alpha: 0.5);
+}
+
+.about-image {
+  background-image: image-url("login_image.JPG");
+  background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	min-height: 700px;
+}
+
+.explanation {
+  margin: 100px 0;
+  font-size: 18px;
+  text-align: center;
+  font-family: Century;
+}
+
+.sample-image {
+  background-image: image-url("sample_image.png");
+  min-height: 533px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

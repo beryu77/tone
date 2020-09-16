@@ -1,5 +1,5 @@
 class ContestsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def index
@@ -23,29 +23,29 @@ class ContestsController < ApplicationController
     @contest = Contest.find(params[:id])
   end
 
-  def edit 
+  def edit
     @contest = Contest.find(params[:id])
   end
 
-  def update 
+  def update
     @contest = Contest.find(params[:id])
     if @contest.update_attributes(contest_params)
       redirect_to @contest
     else
-      render "edit"
+      render 'edit'
     end
   end
 
   def destroy
     @contest.destroy
-    flash[:success] = "コンテストを削除しました"
+    flash[:success] = 'コンテストを削除しました'
     redirect_to contests_path
   end
 
   private
 
   def contest_params
-    params.require(:contest).permit(:title, :main, :condition, :period, :image, 
+    params.require(:contest).permit(:title, :main, :condition, :period, :image,
                                     :gold_prize, :gold_title, :gold_explanation,
                                     :silver_prize, :silver_title, :silver_explanation,
                                     :win_a_prize, :win_title, :win_explanation)
@@ -55,5 +55,4 @@ class ContestsController < ApplicationController
     @contest = current_user.contests.find_by(id: params[:id])
     redirect_to root_url if @contest.nil?
   end
-
 end

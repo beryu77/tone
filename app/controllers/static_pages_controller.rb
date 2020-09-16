@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-
   def home
     if logged_in?
       @user = User.find_by(id: current_user.id)
@@ -11,10 +10,9 @@ class StaticPagesController < ApplicationController
     else
       @posts = Post.page(params[:page])
       @posts = @posts.includes(:user)
-      redirect_to posts_path 
+
     end
   end
 
-  def about
-  end
+  def about; end
 end

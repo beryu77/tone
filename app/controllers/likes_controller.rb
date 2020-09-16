@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    like = current_user.likes.build(post_id: params[:post_id]) 
+    like = current_user.likes.build(post_id: params[:post_id])
     like.save
     respond_to do |format|
       format.html { redirect_to request.referer || root_url }

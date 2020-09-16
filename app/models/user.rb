@@ -21,12 +21,12 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :posts, dependent: :destroy
-  has_many :active_relationships, class_name: "Relationship",
-                   foreign_key: "follower_id",
-                   dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship",
-                   foreign_key: "followed_id",
-                   dependent: :destroy
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 20 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -59,16 +59,16 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 150 }
 
   # 渡された文字列のハッシュ値を返す
-  def User.digest(string)
+  def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
   # ランダムなトークンを返す
-  def User.new_token
+  def self.new_token
     SecureRandom.urlsafe_base64
   end
-  
+
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token
@@ -78,6 +78,7 @@ class User < ApplicationRecord
   # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(remember_token)
     return false if remember_digest.nil?
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -103,22 +104,22 @@ class User < ApplicationRecord
 
   # いいねしているか確認する
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
-  end 
+    likes.exists?(post_id: post.id)
+  end
 
   # お気に入りの投稿として保存しているか確認する
   def already_made_favorite?(post)
-    self.favorites.exists?(post_id: post.id)
+    favorites.exists?(post_id: post.id)
   end
 
   # 表示している投稿がベストフォトとして保存されているか確認する
   def saved_this_best?(post)
-    self.best_photos.exists?(user_id: self.id, post_id: post.id)
+    best_photos.exists?(user_id: id, post_id: post.id)
   end
 
   # コメントにいいねしているか確認する
   def comment_liked?(comment)
-    self.comment_likes.exists?(comment_id: comment.id)
+    comment_likes.exists?(comment_id: comment.id)
   end
 
   # ユーザーのフィードを返す

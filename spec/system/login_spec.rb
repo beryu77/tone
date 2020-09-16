@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'ログイン', type: :system do
-
   describe '通常ユーザー' do
     before do
       user = FactoryBot.create(:user)
@@ -10,7 +9,7 @@ RSpec.describe 'ログイン', type: :system do
     context '通常ユーザーとしてログイン/ログアウトする' do
       before do
         visit root_path
-        find(".navbar-toggler-icon").click
+        find('.navbar-toggler-icon').click
         click_link 'ログイン'
       end
 
@@ -21,14 +20,14 @@ RSpec.describe 'ログイン', type: :system do
         fill_in 'メールアドレス', with: 'test@example.com'
         fill_in 'パスワード', with: 'password'
         click_button 'ログイン'
-        #expect(current_path).to eq "/users/#{user.id}"
+        # expect(current_path).to eq "/users/#{user.id}"
         expect(page).to have_content 'テストユーザー'
 
-        find(".navbar-toggler-icon").click
+        find('.navbar-toggler-icon').click
         click_link 'メニュー'
         click_link 'ログアウト'
 
-        find(".navbar-toggler-icon").click
+        find('.navbar-toggler-icon').click
         expect(page).to have_link '新規登録'
         expect(page).to have_link 'ログイン'
       end
@@ -52,7 +51,7 @@ RSpec.describe 'ログイン', type: :system do
 
     it 'ゲストユーザーとしてログインする' do
       visit root_path
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       click_link 'ログイン'
       expect(current_path).to eq login_path
       expect(page).to have_content 'ログイン'
@@ -65,7 +64,7 @@ RSpec.describe 'ログイン', type: :system do
 
     it 'ゲストログインボタンからログインする' do
       visit root_path
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       click_link 'ログイン'
       expect(current_path).to eq login_path
       expect(page).to have_content 'ゲストログイン'
@@ -84,7 +83,7 @@ RSpec.describe 'ログイン', type: :system do
 
     it '管理者としてログインする' do
       visit root_path
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       click_link 'ログイン'
       expect(current_path).to eq login_path
       expect(page).to have_content 'ログイン'
@@ -93,19 +92,19 @@ RSpec.describe 'ログイン', type: :system do
       fill_in 'パスワード', with: '12345678'
       click_button 'ログイン'
       expect(page).to have_content '管理者'
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       expect(page).to have_content 'ユーザー一覧'
     end
 
     it 'ユーザー一覧からユーザーを削除する' do
       visit root_path
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       click_link 'ログイン'
       fill_in 'メールアドレス', with: 'admin@example.com'
       fill_in 'パスワード', with: '12345678'
       click_button 'ログイン'
 
-      find(".navbar-toggler-icon").click
+      find('.navbar-toggler-icon').click
       click_link 'ユーザー一覧'
       expect(current_path).to eq users_path
       expect(page).to have_content 'このユーザーを削除する'
@@ -115,14 +114,8 @@ RSpec.describe 'ログイン', type: :system do
         delete_link.click
       end
       expect(current_path).to eq users_path
-      expect(page).to have_content "ユーザーを削除しました"
+      expect(page).to have_content 'ユーザーを削除しました'
       expect(User.where(email: 'test@example.com')).to be_empty
     end
   end
 end
-
-
-
-
-
-  

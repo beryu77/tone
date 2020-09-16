@@ -1,5 +1,5 @@
 class ContestPostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: %i[create destroy]
 
   def index
     @contest_posts = ContestPost.page(params[:page])
@@ -12,7 +12,7 @@ class ContestPostsController < ApplicationController
   def create
     @contest_post = current_user.contest_posts.build(contest_params)
     if @contest_post.save
-      flash[:success] = "投稿が完了しました！"
+      flash[:success] = '投稿が完了しました！'
       redirect_to root_path
     else
       redirect_to new_contest_post_path
@@ -28,4 +28,4 @@ class ContestPostsController < ApplicationController
   def contest_params
     params.require(:contest_post).permit(:image, :title, :caption, :location, :equipment)
   end
-end 
+end
