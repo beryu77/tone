@@ -1,3 +1,7 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
 version: 2
 jobs:
   build:
@@ -7,7 +11,7 @@ jobs:
       - image: circleci/ruby:2.6.5-node-browsers
         environment:
 #  ①注意！！ bundlerのバージョンが2.0.1以上だと、bundle installに失敗します。ここに環境として指定します。
-          - BUNDLER_VERSION: 2.0.2
+          - BUNDLER_VERSION: 2.1.4
 #  ②注意！！ circleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要があります。
           - RAILS_ENV: 'test'
       # Mysqlのバージョン5.6で動かしていたため、5.6を指定
@@ -33,12 +37,8 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run:
-          name: install dependencies
-          command: |
-# ①bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要があります。
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: gem install bundler -v 2.1.4
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle     
 
       - save_cache:
           paths:
@@ -54,20 +54,17 @@ jobs:
 
 # rubocopを走らせる記述です。
       - run:
-          name: Rubocop
+          name: run Rubocop
           command: bundle exec rubocop
 
 # rspecを走らせる記述です。
-      # run tests!
       - run:
-          name: run tests
+          name: run Rspec
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
 
-
-# ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
