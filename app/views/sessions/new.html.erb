@@ -6,24 +6,25 @@
 
       <%= form_with scope: :session, url: login_path, local: true do |f| %>
         <%= render "shared/error" %>
-        <div class="text-white">
+
+        <div class="text-white pt-3">
           <%= f.label :email, "メールアドレス" %>
           <%= f.email_field :email, class: "form-control" %>
         </div>
 
-        <div class="text-white">
+        <div class="text-white pt-2">
           <%= f.label :password, "パスワード" %>
           <%= f.password_field :password, class: "form-controll" %>
         </div>
 
-        <div class="text-white">
+        <div class="text-white pt-2">
           <%= f.label :remember_me, class: "checkbox inline" do %>
             <%= f.check_box :remember_me %>
             <span>ログイン情報を記憶させる</span>
           <% end %>
         </div>
 
-        <div class="login-btn">
+        <div class="login-btn pt-3">
           <%= f.submit "ログイン", class: "btn btn-primary" %>
         </div>
       <% end %>
