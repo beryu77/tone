@@ -1,27 +1,37 @@
 <% provide(:title, "ユーザー登録") %>
 
-<div class="body">
-  <div class="row">
-    <div class="col-md-6 mx-auto">
-      <h2 class="mt-4 mb-4">新規ユーザー登録</h2> 
+<div class="login-image">
+  <div class="container user-form">
+    <h2 class="pb-3 text-center text-white">新規ユーザー登録</h2> 
     
       <%= form_with model: @user, local: true do |f| %>
         <%= render "shared/error_messages", object: f.object %>
 
-        <%= f.label :name, "ユーザー名（10文字以内）" %>
-        <%= f.text_field :name, class: "form-control", autocomplete: "name", required: "required" %>  
-        
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: 'required' %>
-        
-        <%= f.label :password, "パスワード（8文字以上）" %>
-        <%= f.password_field :password, class: 'form-control', autocomplete: 'password', required: 'required' %>
-        
-        <%= f.label :password_confirmation, "確認用パスワード" %>
-        <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'password', required: 'required' %>
+        <div class="text-white pt-3">
+          <%= f.label :name, "ユーザー名（10文字以内）" %>
+          <%= f.text_field :name, class: "form-control", autocomplete: "name", required: "required" %>  
+        </div>
 
-        <%= f.submit "ユーザー登録", class: "btn btn-dark" %>
+        <div class="text-white pt-2">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: 'required' %>
+        </div>
+
+        <div class="text-white pt-2">
+          <%= f.label :password, "パスワード（8文字以上）" %>
+          <%= f.password_field :password, class: 'form-control', autocomplete: 'password', required: 'required' %>
+        </div>
+
+        <div class="text-white pt-2">
+          <%= f.label :password_confirmation, "確認用パスワード" %>
+          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'password', required: 'required' %>
+        </div>
+
+        <div class="login-btn pt-3">
+          <%= f.submit "ユーザー登録", class: "btn btn-primary" %>
+        </div>
       <% end %>
+
       <p><%= link_to "ログイン", login_path, class:"btn btn-success" %></p>
     </div>
   </div>

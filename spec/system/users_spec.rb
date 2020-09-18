@@ -9,7 +9,6 @@ RSpec.describe 'ユーザー', type: :system do
     visit root_path
 
     # ログインする
-    find('.navbar-toggler-icon').click
     click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
