@@ -17,8 +17,12 @@
 require 'capybara/rspec'
 
 RSpec.configure do |config|
+  ENV['RAILS_ENV'] = 'test'
+
+  # config.include Capybara::DSL
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
+    # driven_by :selenium_chrome_headless
+    driven_by :rack_test
   end
 
   # rspec-expectations config goes here. You can use an alternate
