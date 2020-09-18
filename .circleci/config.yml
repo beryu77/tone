@@ -34,10 +34,10 @@ jobs:
           - v1-dependencies-
 
     - run:
-      name: install dependencies
-      command: |
-        gem install bundler -v 2.1.4
-        bundle install --jobs=4 --retry=3 --path vendor/bundle
+        name: install dependencies
+        command: |
+          gem install bundler -v 2.1.4
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
           
     - save_cache:
         paths:
@@ -49,10 +49,10 @@ jobs:
 
     # Database setup
     - run:
-      name: Databasesetup
-      command: |
-         bundle exec rake db:create
-         bundle exec rake db:schema:load
+        name: Databasesetup
+        command: |
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
 
 # rubocopを走らせる記述です。
       # - run:
