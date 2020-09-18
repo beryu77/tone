@@ -7,6 +7,8 @@ services:
       MYSQL_DATABASE: root
     ports:
       - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   web:
     build: .
@@ -19,3 +21,15 @@ services:
       - db
     tty: true
     stdin_open: true
+    depends_on:
+      - db
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
+
+volumes:
+  mysql_data:

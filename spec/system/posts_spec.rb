@@ -9,7 +9,7 @@ RSpec.describe '投稿', type: :system do
     visit root_path
 
     # ログインする
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
@@ -20,7 +20,7 @@ RSpec.describe '投稿', type: :system do
     expect(current_path).to eq "/users/#{@user.id}"
 
     # 新規投稿する
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link '新規投稿'
     expect(current_path).to eq new_post_path
     expect(page).to have_content '撮影場所'

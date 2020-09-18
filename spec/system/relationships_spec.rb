@@ -18,7 +18,7 @@ RSpec.describe 'フォロー', type: :system do
     visit root_path
 
     # taroがログインする
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
@@ -29,7 +29,7 @@ RSpec.describe 'フォロー', type: :system do
     expect(page).to have_content 'taro'
 
     # jiroのページへ移動する
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link '新着'
     click_link 'jiro'
     expect(current_path).to eq "/users/#{@jiro.id}"
@@ -47,7 +47,7 @@ RSpec.describe 'フォロー', type: :system do
     # マイページ（taro）に移動する
     visit user_path(@taro)
     expect(current_path).to eq "/users/#{@taro.id}"
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link 'フォロー'
     expect(page).to have_content 'フォロー 1'
     expect(page).to have_content 'jiro'

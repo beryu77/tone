@@ -18,7 +18,7 @@ RSpec.describe 'いいね', type: :system do
     visit root_path
 
     # taroがログインする
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
@@ -29,7 +29,7 @@ RSpec.describe 'いいね', type: :system do
     expect(page).to have_content 'taro'
 
     # jiroの既存の投稿に移動する
-    find('.navbar-toggler-icon').click
+    #find('.navbar-toggler-icon').click
     click_link '新着'
     post = @jiro.posts.first
     expect(page).to have_link 'a', href: "/posts/#{post.id}"
