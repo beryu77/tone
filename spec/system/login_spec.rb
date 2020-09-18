@@ -89,24 +89,24 @@ RSpec.describe 'ログイン', type: :system do
       expect(page).to have_content 'ユーザー一覧'
     end
 
-    it 'ユーザー一覧からユーザーを削除する' do
-      visit root_path
-      click_link 'ログイン'
-      fill_in 'メールアドレス', with: 'admin@example.com'
-      fill_in 'パスワード', with: '12345678'
-      click_button 'ログイン'
+    # it 'ユーザー一覧からユーザーを削除する' do
+      #visit root_path
+      #click_link 'ログイン'
+      #fill_in 'メールアドレス', with: 'admin@example.com'
+      #fill_in 'パスワード', with: '12345678'
+      #click_button 'ログイン'
 
-      click_link 'ユーザー一覧'
-      expect(current_path).to eq users_path
-      expect(page).to have_content 'このユーザーを削除する'
+      #click_link 'ユーザー一覧'
+      #expect(current_path).to eq users_path
+      #expect(page).to have_content 'このユーザーを削除する'
 
-      delete_link = find_link 'このユーザーを削除する'
-      page.accept_confirm 'このユーザーを削除しますか？' do
-        delete_link.click
-      end
-      expect(current_path).to eq users_path
-      expect(page).to have_content 'ユーザーを削除しました'
-      expect(User.where(email: 'test@example.com')).to be_empty
-    end
+      #delete_link = find_link 'このユーザーを削除する'
+      #page.accept_confirm 'このユーザーを削除しますか？' do
+        #delete_link.click
+      #end
+      #expect(current_path).to eq users_path
+      #expect(page).to have_content 'ユーザーを削除しました'
+      #expect(User.where(email: 'test@example.com')).to be_empty
+    #end
   end
 end
