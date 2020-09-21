@@ -35,7 +35,5 @@ Rails.application.routes.draw do
   resources :contests
   resources :contest_posts, only: %i[new create index show]
 
-  resources :gold_prizes, only: %i[create destroy]
-  resources :silver_prizes, only: %i[create destroy]
-  resources :win_a_prizes, only: %i[create destroy]
+  resources :notifications, only: :index
 end

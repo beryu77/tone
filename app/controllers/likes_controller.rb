@@ -19,5 +19,6 @@ class LikesController < ApplicationController
       format.html { redirect_to request.referer || root_url }
       format.js
     end
+    @post.create_notification_like(current_user)
   end
 end
