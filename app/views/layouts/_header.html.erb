@@ -43,14 +43,28 @@
         <% end %>
       </li>
     </ul>
-
+  
     <ul class="navbar-nav">
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to "新規投稿", new_post_path, class:"nav-link active" %>
+          <%= link_to notifications_path, class:"nav-link active" do %>
+            <% if unchecked_notifications.any? %>
+              <span class="fa-stack">
+                <i class="far fa-bell fa-stack-2x" style="font-size: 1.3em;"></i>
+                <i class="fas fa-circle n-circle fa-stack-1x" style="font-size: 0.9em;"></i>
+              </span>
+              <span>
+                <%= "通知一覧" %>
+              </span>
+            <% else %> 
+              <i class="far fa-bell" style="font-size: 1.3em;"></i><%= " 通知一覧" %>
+            <% end %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "通知一覧", notifications_path, class:"nav-link active" %>
+          <%= link_to new_post_path, class:"nav-link active" do %>
+            <i class="fas fa-external-link-alt"></i><%= " 新規投稿" %>
+          <% end %>
         </li>
         <li class="nav-item dropdown">
           <%= link_to "メニュー", "#", class:"nav-link active dropdown-toggle", id: "navbarDropdown", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"} %>
@@ -59,6 +73,7 @@
             <%= link_to "ログアウト", logout_path, method: :delete, class:"dropdown-item" %>
           </div>
         </li>
+
       <% else %>
         <a class="nav-item">
           <%= link_to "新規登録", signup_path, class:"nav-link active" %>

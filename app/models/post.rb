@@ -65,7 +65,7 @@ class Post < ApplicationRecord
   end
 
   # コメント通知の作成
-  def create_notification_comment(current_user, comment_id)
+  def create_notification_comment(current_user, comment_id, visited_id)
     notification = current_user.active_notifications.new(
       post_id: id,
       comment_id: comment_id,
