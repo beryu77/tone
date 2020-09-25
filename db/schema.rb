@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_09_21_050914) do
 
-  create_table "comment_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "comment_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_comment_likes_on_comment_id"
-    t.index ["user_id"], name: "index_comment_likes_on_user_id"
-  end
-
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "user_id"
@@ -130,8 +121,6 @@ ActiveRecord::Schema.define(version: 2020_09_21_050914) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "comment_likes", "comments"
-  add_foreign_key "comment_likes", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "posts"
