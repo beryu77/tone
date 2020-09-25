@@ -51,20 +51,6 @@
               <% end %>
               <span><%= link_to comment.user.name, user_path(comment.user), class:"user-name" %></span>
               <span class="ml-3"><%= comment.comment %></span>
-          
-              <span id="comment_like_btn_<%= comment.id %>" class="float-right pt-3">
-                <% if logged_in? %>
-                  <% if current_user.comment_liked?(comment) %>
-                    <%= link_to comment_likes_path(comment_id: comment.id), method: :delete, remote: true, class:'btn btn-outline-dark btn-sm' do %>
-                      <i class="fas fa-heart"></i>
-                    <% end %>
-                  <% else %>
-                    <%= link_to comment_likes_path(comment_id: comment.id), method: :post, remote: true, class:'btn btn-outline-dark btn-sm' do %>
-                      <i class="far fa-heart"></i>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </span>
             </div>   
             <div class="float-right">
               <small><%= time_ago_in_words(comment.created_at) %>前</small>

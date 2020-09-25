@@ -39,7 +39,6 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
     @comment = @post.comments.build(user_id: current_user.id) if current_user
     @like = Like.new
-    @comment_like = CommentLike.new
     @favorite = Favorite.new
   end
 
