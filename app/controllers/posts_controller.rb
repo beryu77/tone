@@ -13,11 +13,7 @@ class PostsController < ApplicationController
   end
 
   def popular
-    @popular_posts = Post.joins(:likes).group(:post_id).order('count(likes.user_id) desc').page(params[:page])
-  end
-
-  def feature
-    @feature_posts = Post.joins(:likes).group(:post_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day).order('count(likes.user_id) desc').limit(7)
+    @popular_posts = Post.unscoped.joins(:likes).group(:post_id).order('count(likes.user_id) desc').page(params[:page])
   end
 
   def new

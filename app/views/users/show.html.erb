@@ -80,7 +80,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="likes-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
+      <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#item4" role="tab" aria-controls="item4" aria-selected="true">
         <div class="user-status">
           <span class="status-name">お気に入り</span>
         </div>
@@ -91,9 +91,7 @@
   <div class="tab-content">
     <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="posts-tab">
       <% if @user.posts.any? %>
-        <div id="">
-          <%= render "show_posts", posts: @posts %>
-        </div>
+        <%= render "show_posts", posts: @posts %>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
           投稿がありません
@@ -118,11 +116,9 @@
         </div>
       <% end %>
     </div>
-    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="likes-tab">
-      <% if @user.likes.any? %>
-        <div id="show-likes">
-          <%= render 'show_posts', objects: @like_posts %>
-        </div>
+    <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="favorites-tab">
+      <% if @user.favorites.any? %>
+        <%= render 'show_favorites', favorites: @favorites %>
       <% else %>
         <div class="no-contents d-flex justify-content-center align-items-center">
           保存した投稿がありません

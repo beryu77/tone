@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page])
     @followings = @user.following
     @followers = @user.followers
+    @favorites = @user.favorite_posts.page(params[:page])
   end
 
   def new
