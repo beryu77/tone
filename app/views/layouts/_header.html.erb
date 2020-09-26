@@ -34,7 +34,7 @@
       </li>
       <li class="nav-item">
         <%= link_to feature_posts_path, class:"nav-link active" do %>
-          <i class="far fa-star"></i><%= " 注目の写真" %>
+          <i class="far fa-star"></i><%= " 注目の７枚" %>
         <% end %>
       </li>
       <li class="nav-item">
@@ -48,13 +48,7 @@
       <% if logged_in? %>
         <li class="nav-item">
           <%= link_to notifications_path, class:"nav-link active" do %>
-            <% if unchecked_notifications.any? %>
-              <span class="fa-stack">
-                <i class="far fa-bell fa-stack-2x" style="font-size: 1.3em;"></i><%= "通知一覧" %>
-              </span>
-            <% else %> 
-              <i class="far fa-bell" style="font-size: 1.3em;"></i><%= " 通知一覧" %>
-            <% end %>
+            <i class="far fa-bell" style="font-size: 1.3em;"></i><%= " 通知一覧" %>
           <% end %>
         </li>
         <li class="nav-item">
