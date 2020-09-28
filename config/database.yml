@@ -4,7 +4,9 @@ default: &default
   pool: 5
   username: root
   password: password
-  host: db
+  # dockerの場合はdb,それ以外の場合はlocalhostを指定
+  # host: db
+  host: localhost
 
 development:
   <<: *default
