@@ -17,17 +17,10 @@
       <p class="apptitle pt-4">Tone</p>
       <p class="title-message">モノクロで自由に</p>
     </div>
-  </div>
-  <div class="explanation">
-    <h4 class="font-weight-bold">あなたが目にしたものをモノクロで表現してみてください</h4>
-    <p class="pt-4">街で見つけた面白い光景</p>
-    <p class="pt-3">家族や友人と過ごすひと時など</p>
-    <p class="pt-3">それらはモノクロにすることで、また違った特別なものになるかもしれません</p>
-  </div>
-  <div class="sample-image d-flex flex-column align-items-center justify-content-center mx-auto">
-    
+    <div class="top-login">
+      <span><%= link_to "新規登録", signup_path, class:"btn btn-success mr-2" %></span>
+      <span><%= link_to "ログイン", login_path, class:"btn btn-primary" %></span>
+    </div>
   </div>
 <% end %>
 
-
-<%= render "posts/index_posts", posts: @posts %>

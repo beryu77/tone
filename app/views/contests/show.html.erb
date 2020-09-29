@@ -9,7 +9,7 @@
       </div>
 
       <% if @contest.gold_prize? && @contest.silver_prize? && @contest.win_a_prize? %>
-        <h2 class="text-center mt-5">結果発表</h2>
+        <h2 class="text-center mt-5">＜結果発表＞</h2>
 
         <h2 class="text-center mt-5">金賞</h2>
         <div class="photo-title text-center mt-4 mb-3">
@@ -17,7 +17,7 @@
         </div>
         <%= image_tag(@contest.gold_prize.url, class: "img-fluid", alt: "image") %>
         <div class="photo-explanation mt-3">
-          <%= @contest.gold_explanation %>
+          <%= simple_format(@contest.gold_explanation) %>
         </div>
 
         <h3 class="text-center mt-5">銀賞</h3>
@@ -26,7 +26,7 @@
         </div>
         <%= image_tag(@contest.silver_prize.url, class: "img-fluid", alt: "image") %>
         <div class="photo-explanation mt-3">
-          <%= @contest.silver_explanation %>
+          <%= simple_format(@contest.silver_explanation) %>
         </div>
 
         <h4 class="text-center mt-5">入賞</h4>
@@ -35,24 +35,24 @@
         </div>
         <%= image_tag(@contest.win_a_prize.url, class: "img-fluid", alt: "image") %>
         <div class="photo-explanation mt-3">
-          <%= @contest.win_explanation %>
+          <%= simple_format(@contest.win_explanation) %>
         </div>
 
       <% else %>
-        <div class="contest-main mt-4">
-          <%= @contest.main %>
+        <div class="contest-main mt-5">
+          <%= safe_join(@contest.main.split("\n"),tag(:br)) %>
         </div>
         <h2 class="text-center mt-5">応募要項</h2>
-        <div class="contest-condition mt-4 mb-4">
-          <%= @contest.condition %>
+        <div class="contest-condition mt-4 mb-5">
+          <%= safe_join(@contest.condition.split("\n"),tag(:br)) %>
         </div>
-        <div class="text-center mt-4 mb-5">
+        <div class="text-center pt-4 mb-5">
         <%= link_to "コンテストに投稿する", new_contest_post_path, class: "btn btn-lg btn-dark text-white" %>
         </div>
       <% end %>
 
       <% if logged_in? && current_user.admin? %>
-        <div class="text-center mt-4">
+        <div class="text-center pt-4 mb-5">
           <%= link_to "投稿写真一覧", contest_posts_path, class: "btn btn-outline-dark" %>
           <%= link_to "編集", edit_contest_path(@contest.id), class: "btn btn-outline-dark" %>
           <%= link_to "削除", @contest, method: :delete, data: { confirm: "削除しますか?" }, class: "btn btn-outline-dark" %>

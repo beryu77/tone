@@ -33,7 +33,11 @@ Rails.application.routes.draw do
   resource :comment_likes, only: %i[create destroy]
 
   resources :contests
-  resources :contest_posts, only: %i[new create index show]
+  resources :contest_posts, only: %i[new create index show] do
+    collection do
+      delete 'destroy_all'
+    end
+  end
 
   resources :notifications, only: :index
 end

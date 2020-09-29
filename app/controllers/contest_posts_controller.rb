@@ -19,6 +19,12 @@ class ContestPostsController < ApplicationController
     end
   end
 
+  def destroy_all
+    ContestPost.destroy_all
+    flash[:success] = '投稿を削除しました'
+    redirect_to contests_path
+  end
+
   def show
     @contest_post = ContestPost.find(params[:id])
   end
