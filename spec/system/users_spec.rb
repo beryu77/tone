@@ -15,7 +15,7 @@ RSpec.describe 'ユーザー', type: :system do
 
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
-    click_button 'ログイン'
+    find('#head').click_button 'ログイン'
     expect(page).to have_content 'テストユーザー'
 
     click_link 'プロフィール編集'

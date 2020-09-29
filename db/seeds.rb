@@ -340,9 +340,8 @@ Favorite.create!(user_id: 1, post_id: 20)
 Favorite.create!(user_id: 1, post_id: 25)
 
 # 通知
-Notification.create!(visitor_id: 3, visited_id: 1, post_id: 3, comment_id: 1,action: 'comment')
+Notification.create!(visitor_id: 3, visited_id: 1, post_id: 3, comment_id: 1, action: 'comment')
 Notification.create!(visitor_id: 3, visited_id: 1, post_id: 3, action: 'like')
 Notification.create!(visitor_id: 3, visited_id: 1, action: 'follow')
 Notification.create!(visitor_id: 8, visited_id: 1, action: 'follow')
 Notification.create!(visitor_id: 10, visited_id: 1, action: 'follow')
-
