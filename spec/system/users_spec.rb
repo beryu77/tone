@@ -9,7 +9,7 @@ RSpec.describe 'ユーザー', type: :system do
     visit root_path
 
     # ログインする
-    find('#head2').click_link 'ログイン'
+    click_button 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
 

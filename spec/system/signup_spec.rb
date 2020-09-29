@@ -7,7 +7,7 @@ RSpec.describe '新規ユーザー登録', type: :system do
 
   it '新規ユーザーを作成してログインする（成功）' do
     visit root_path
-    find('#head').click_link '新規登録'
+    click_button '新規登録'
     expect(current_path).to eq signup_path
     expect(page).to have_content '新規ユーザー登録'
 
@@ -22,7 +22,7 @@ RSpec.describe '新規ユーザー登録', type: :system do
 
   it '新規ユーザーを作成してログインする（失敗）' do
     visit root_path
-    find('#head').click_link '新規登録'
+    click_button '新規登録'
     expect(current_path).to eq signup_path
     expect(page).to have_content '新規ユーザー登録'
 
