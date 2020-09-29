@@ -1,6 +1,7 @@
-<% provide :title, "注目の写真" %>
+<% provide :title, "注目の７枚" %>
 
-<div class="container pt-4 bg-dark">
-  <h4 class="text-center text-white">注目の７枚（過去１週間）</h4>
+<div class="container pt-4">
+  <h4 class="text-center">注目の７枚</h4>
+  <p class="text-center">過去１週間で人気のある写真を表示しています</p>
   <%= render "posts/index_feature", posts: @feature_posts %>
 </div>

@@ -20,6 +20,7 @@
 .title-box {
   min-width: 600px;
   min-height: 250px;
+  margin-top: 150px;
   background-color: rgba($color: black, $alpha: 0.5);
 }
 
@@ -31,16 +32,7 @@
 	min-height: 700px;
 }
 
-.explanation {
-  margin: 100px 0;
-  font-size: 18px;
-  text-align: center;
-  font-family: Century;
+.top-login {
+  margin: 70px 0;
 }
 
-.sample-image {
-  background-image: image-url("sample_image.png");
-  min-height: 533px;
-  background-repeat: no-repeat;
-  background-position: center;
-}

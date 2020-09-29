@@ -1,42 +1,45 @@
-<%= form_with model: contest_post do |f| %>
-  <div class="form-group row">
-    <%= f.label :image, '投稿する写真をアップロードしてください' %>
-    <%= f.file_field :image, accept: 'image/jpg,image/jpeg,image/gif,image/png', class: 'image' %>
-    <div class="col-md-6 add_image text-center" id="img_field" onClick="$('#post_image').click()"> 
-      <% if contest_post.image.url.to_s.present? %>
-        <%= image_tag(post.image.url.to_s) %>
-      <% else %>
-        <i class="far fa-caret-square-down"><p class="help-block">※ 15MBまでの画像をアップロードできます</p></i>
-      <% end %>
-    </div>
-
-    <div class="col-md-6 col-right">
-      <div class="">
-        <%= f.label :title, 'タイトル' %>
-        <%= f.text_field :title, class: "form-control", rows: 2, placeholder: "写真のタイトル" %> 
+<div class="container mt-3 pb-3">
+  
+  <%= form_with model: contest_post do |f| %>
+    <div class="form-group row">
+      <%= f.label :image, '投稿する写真をアップロードしてください' %>
+      <%= f.file_field :image, accept: 'image/jpg,image/jpeg,image/gif,image/png', class: 'image' %>
+      <div class="col-md-6 add_image text-center" id="img_field" onClick="$('#post_image').click()"> 
+        <% if contest_post.image.url.to_s.present? %>
+          <%= image_tag(post.image.url.to_s) %>
+        <% else %>
+          <i class="far fa-caret-square-down"><p class="help-block">※ 15MBまでの画像をアップロードできます</p></i>
+        <% end %>
       </div>
 
-      <div class="">
-        <%= f.label :location, '撮影場所' %>
-        <%= f.text_field :location, class: "form-control", rows: 2, placeholder: "場所、地名、住所" %> 
+      <div class="col-md-6 col-right">
+        <div class="">
+          <%= f.label :title, 'タイトル' %>
+          <%= f.text_field :title, class: "form-control", rows: 2, placeholder: "写真のタイトル" %> 
+        </div>
+
+        <div class="">
+          <%= f.label :location, '撮影場所' %>
+          <%= f.text_field :location, class: "form-control", rows: 2, placeholder: "場所、地名、住所" %> 
+        </div>
+
+        <div class="">
+          <%= f.label :equipment, '機材' %>
+          <%= f.text_field :equipment, class: "form-control", rows: 2, placeholder: "カメラ・レンズメーカー、モデル名など" %>
+        </div> 
+
+        <div class="">
+          <%= f.label :caption, 'キャプション' %>
+          <%= f.text_area :caption, class: 'form-control', rows: 12, placeholder: 'この写真についてのストーリーを入力（1000文字以内）' %>
+        </div>
       </div>
 
-      <div class="">
-        <%= f.label :equipment, '機材' %>
-        <%= f.text_field :equipment, class: "form-control", rows: 2, placeholder: "カメラ・レンズメーカー、モデル名など" %>
-      </div> 
-
-      <div class="">
-        <%= f.label :caption, 'キャプション' %>
-        <%= f.text_area :caption, class: 'form-control', rows: 12, placeholder: 'この写真についてのストーリーを入力（1000文字以内）' %>
+      <div class="row d-flex justify-content-center col-lg-4 col-md-6 mx-auto mt-3 mb-3">
+        <%= f.submit "写真をコンテストに応募する", class: "btn btn-primary form-control" %>
       </div>
-    </div>
-
-    <div class="row d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
-      <%= f.submit "写真をコンテストに応募する", class: "btn btn-primary form-control" %>
-    </div>
-  </div> 
-<% end %>
+    </div> 
+  <% end %>
+</div>
 
 <script type="text/javascript">
 $('#micropost_picture').bind('change', function() {

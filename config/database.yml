@@ -6,7 +6,7 @@ default: &default
   password: password
   # dockerの場合はdb,それ以外の場合はlocalhostを指定
   # host: db
-  host: localhost
+  host: DB
 
 development:
   <<: *default
