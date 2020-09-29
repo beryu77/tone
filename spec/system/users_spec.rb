@@ -9,13 +9,13 @@ RSpec.describe 'ユーザー', type: :system do
     visit root_path
 
     # ログインする
-    click_link 'ログイン'
+    find('#head').click_link 'ログイン'
     expect(current_path).to eq login_path
     expect(page).to have_content 'ログイン'
 
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
-    find('#head').click_button 'ログイン'
+    click_button 'ログイン'
     expect(page).to have_content 'テストユーザー'
 
     click_link 'プロフィール編集'
