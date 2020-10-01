@@ -14,7 +14,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/tone # ソースコード変更したらDocker側も即反映されるように
       - public-data:/tone/public
