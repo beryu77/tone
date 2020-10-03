@@ -78,7 +78,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # ----- 以下追記 -----
 gem 'bcrypt', '>= 3.1.12'
 gem 'bootstrap', '>= 4.3.1'
-gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'faker', '>= 1.7.3'
 gem 'jquery-rails'
@@ -86,3 +85,6 @@ gem 'kaminari'
 gem 'mini_magick', '>= 4.9.4'
 gem 'rails-i18n'
 gem 'semantic-ui-sass'
+# for image uploader with AWS S3
+gem 'carrierwave'
+gem 'fog'
