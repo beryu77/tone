@@ -1,24 +1,59 @@
-# README
+## Tone
+![tone](https://user-images.githubusercontent.com/64938573/95013081-bb1cc880-0678-11eb-9de9-1cf9ec253a9f.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+モノクロをテーマにした写真共有サービスです。
 
-Things you may want to cover:
+## URL
+https://www.tone-app.work/
 
-* Ruby version
+TOPページのゲストログインより、機能確認用の『ゲストユーザー』でログインできます。
 
-* System dependencies
+## 制作の背景
+モノクロ写真は、写真を趣味にしている人でもメインに撮影されている人が少なく、私自身も「玄人向け」「単調になりがち」といったイメージを抱いていました。
 
-* Configuration
+しかしながら、いざモノクロ写真の撮影に取り組んでみると、色という情報が少なくなったにもかかわらず、そのものの「形状」や「質感」などが際立ち、より生々しさが強く表現されるということに気づかされました。
+モノクロ写真のこのような特徴は、私たちのありふれた日常から印象的で生き生きとしたものを捉え、新しい発見をもたらしてくれると考えています。
 
-* Database creation
+写真共有SNSは世の中に沢山ありますが、モノクロ写真をメインにしているサービスは日本には存在しません。
 
-* Database initialization
+もっと多くの人達にモノクロで写真を撮る面白さを知って欲しい、モノクロ写真が好きな人、興味がある人が集う場所を作りたいと考えこのようなアプリを作成しました。
 
-* How to run the test suite
+## 機能一覧
+* ユーザー機能
+  - 新規登録、ログイン、ログアウト機能
+  - マイページ、登録情報編集機能
+* 投稿機能
+  - 投稿一覧表示（タイムライン、人気順、新着順、過去1週間の人気投稿）
+  - 投稿詳細表示、投稿編集、投稿削除
+* コンテスト機能
+  - コンテスト用投稿
+* フォロー機能
+  - フォロー、フォロワー一覧表示
+  - Ajaxを使用
+* いいね機能
+  - Ajaxを使用
+* コメント機能
+* お気に入り投稿保存機能
+  - お気に入り投稿一覧表示
+* 通知機能
+  - フォロー時、いいね時、コメント時
+* 新規ユーザー表示機能
+* ページネーション機能
+* レスポンシブ対応
+* 管理ユーザー機能
+  - ユーザー一覧表示、一般ユーザーのアカウント、投稿の削除
+  - コンテストページの作成、編集、コンテスト結果表示
+* ゲストログイン機能
 
-* Services (job queues, cache servers, search engines, etc.)
+## 環境・使用技術
+* Ruby 2.6.5, Ruby on Rails 5.2.4
+* jQuery, ajax, Bootstrap
+* MySQL2
+* Nginx, Puma
+* AWS（EC2, RDS, Route53, ALB, ACM, S3）¥
+* Docker/docker-compose
+* CircleCI（GitHubにpush後に自動テスト）
+* RSpec
+* RuboCop
 
-* Deployment instructions
-
-* ...
