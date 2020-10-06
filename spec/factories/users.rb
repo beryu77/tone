@@ -2,14 +2,14 @@
 #
 # Table name: users
 #
-#  id              :bigint           not null, primary key
+#  id              :integer          not null, primary key
 #  admin           :boolean          default(FALSE)
-#  avatar          :string(255)
-#  email           :string(255)
-#  name            :string(255)
-#  password_digest :string(255)
-#  profile         :text(65535)
-#  remember_digest :string(255)
+#  avatar          :string
+#  email           :string
+#  name            :string
+#  password_digest :string
+#  profile         :text
+#  remember_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

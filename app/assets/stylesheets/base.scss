@@ -10,7 +10,6 @@
   box-sizing:         border-box;
 }
 
-
 .user-name {
   color: black;
 }
@@ -33,12 +32,13 @@
 }
 
 /* body */
-body {
+body, 
+#wrapper {
   margin: 0;
   display: flex;
   flex-flow: column;
-  min-height: 100vh;
   background-color: white;
+  min-height: 100vh;
 }
 
 /* header */

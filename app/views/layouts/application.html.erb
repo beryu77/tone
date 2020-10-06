@@ -6,17 +6,19 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0", name: "viewport"} >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   </head>
   <body>
-    <%= render 'layouts/header' %>
-    <div class="">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-light font-weight-bold font-italic"><%= message %></div>
-      <% end %>
-      <main><%= yield %></main>
+    <div id="wrapper">
+      <%= render 'layouts/header' %>
+      <div class="">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-light font-weight-bold font-italic"><%= message %></div>
+        <% end %>
+        <main><%= yield %></main>
+      </div>
     </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>
-
