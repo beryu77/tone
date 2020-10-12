@@ -1,14 +1,15 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+  # 本番環境ではRDS
+  # db:
+    # image: mysql:5.7
+    # environment:
+      # MYSQL_ROOT_PASSWORD: password
+      # MYSQL_DATABASE: root
+    # ports:
+      # - "3306:3306"
+    # volumes:
+      # - mysql_data:/var/lib/mysql
 
   web:
     build: 
@@ -39,7 +40,7 @@ services:
       - web
 
 volumes:
-  mysql_data:
+  # mysql_data:
   public-data:
   tmp-data:
   log-data:
