@@ -1,5 +1,5 @@
 ## Tone
-![tone](https://user-images.githubusercontent.com/64938573/95013081-bb1cc880-0678-11eb-9de9-1cf9ec253a9f.png)
+![tone](https://user-images.githubusercontent.com/64938573/95821248-8e496f00-0d64-11eb-888b-a8cb07bd7071.png)
 
 ## 概要
 モノクロをテーマにした写真共有サービスです。
